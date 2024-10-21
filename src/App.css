@@ -1,0 +1,139 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.App {
+  text-align: center;
+}
+
+
+nav {
+  position: relative; /* Ensure proper stacking context */
+}
+
+@media (max-width: 767px) {
+  .relative.h-screen {
+    height: 50vh; /* Adjust height as needed */
+  }
+}
+
+.fixed-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10; /* Ensure it stays above other elements */
+  transition: background-color 0.3s ease-in-out;
+  background-color: #993333; /* Default background */
+  display: flex;
+  align-items: center; /* Center items vertically */
+}
+
+.scrolled {
+  background-color: #1a75bc;
+  color: black;
+  box-shadow: 0 1px 1px -1px gray; /* Optional: add shadow for better visibility */
+}
+
+.nav-link {
+  position: relative;
+  color: inherit; /* Ensure it inherits the color from the parent */
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+  text-decoration: none; /* Remove underline */
+}
+
+.nav-link .underline {
+  display: block;
+  max-width: 0;
+  height: 2px; /* Adjust as needed */
+  background-color: #993333; /* Primary color */
+  transition: max-width 0.5s ease-in-out;
+}
+
+.nav-link:hover {
+  color: #1a75bc; /* Primary color */
+}
+
+.nav-link:hover .underline {
+  max-width: 100%;
+}
+
+.nav-link.active {
+  font-weight: bold;
+  color: #d1d5db; /* Gray color */
+}
+
+.fixed-nav.scrolled .nav-link:hover {
+  color: white; /* Change hover color when scrolled */
+}
+
+.fixed-nav.scrolled .nav-link .underline {
+  background-color: white; /* Change underline color when scrolled */
+}
+
+.scrolled-button {
+  color: white !important;
+}
+
+.scrolled-button:hover {
+  color: #1a75bc !important; /* Optional: Change hover color */
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -100%; /* Start hidden off-screen */
+  width: 100%;
+  height: 100%;
+  background-color: #993333; /* Background color for the menu */
+  background-image: url('https://www.staffconnect.ae/wp-content/uploads/2021/10/web-pattern.png');
+  transition: left 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center items horizontally and vertically */
+  z-index: 20;
+  color: white;
+}
+
+.side-menu.open {
+  left: 0; /* Slide in */
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu .nav-link {
+  margin: 10px 0;
+}
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+
+.bg-slider {
+  animation: slide 15s infinite;
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+}
+
+.overlay-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1));
+  z-index: 1;
+}
