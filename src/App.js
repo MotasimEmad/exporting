@@ -5,13 +5,15 @@ import Timeline from './components/TimeLine';
 import ContactUs from './components/ContactUs';
 import WhyUs from './components/ChooseUs';
 import Footer from './components/Footer';
+import ScrollTimeline from './components/ScrollTimeline';
 
 function App() {
   return (
     <div className="App font-ubuntu">
       <NavBar />
       <Hero />
-      <Timeline />
+      <ScrollTimeline />
+
       <WhyUs />
       <ContactUs />
       <Footer />
