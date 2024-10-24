@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import logo from '../assets/logo.png';
 import '../App.css';
 
-const NavBar = ({ isVisible }) => {
+const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -13,28 +13,17 @@ const NavBar = ({ isVisible }) => {
     <>
       {/* Desktop Navigation */}
       <nav
-        className={`hidden md:block px-16 h-12 md:h-20 fixed-nav bg-[#993333] border-t-2 border-secondary transition-transform duration-500 ${
-          isVisible ? 'translate-y-0' : '-translate-y-full'
-        }`}
+        className={`hidden md:block px-16 h-20 fixed top-0 left-0 w-full bg-[#993333] border-b-2 border-secondary transition-transform duration-500 z-50`}
       >
         <div className="container mx-auto flex h-full">
-          <div className="hidden md:flex items-center justify-between w-full">
+          <div className="flex items-center justify-between w-full">
             <div className="flex items-center">
               <img src={logo} alt="Logo" className="h-16 rounded-md" />
             </div>
             <div className="md:flex space-x-6 font-normal text-sm text-white ml-6">
-              <a>
-                Home
-                <span className="underline"></span>
-              </a>
-              <a href='#about-us'>
-                About us
-                <span className="underline"></span>
-              </a>
-              <a>
-                Contact us
-                <span className="underline"></span>
-              </a>
+              <a href="#home">Home</a>
+              <a href="#about-us">About us</a>
+              <a href="#contact-us">Contact us</a>
             </div>
           </div>
         </div>
@@ -42,13 +31,13 @@ const NavBar = ({ isVisible }) => {
 
       {/* Mobile Navigation */}
       <div className="block md:hidden">
-        <nav className={`flex items-center justify-between px-6 py-4 fixed-nav`}>
+        <nav className={`flex items-center justify-between px-6 py-4 fixed top-0 left-0 w-full bg-[#993333] z-50`}>
           <div className="flex items-center">
             <img src={logo} alt="Logo" className="h-12 rounded-md" />
           </div>
           <button
             onClick={toggleMenu}
-            className={`text-primary hover:text-primary focus:outline-none text-white`}
+            className={`text-white focus:outline-none`}
           >
             {isOpen ? (
               <svg
@@ -102,20 +91,11 @@ const NavBar = ({ isVisible }) => {
               </svg>
             </button>
             <div className="menu md:flex font-normal text-lg py-12 px-4">
-              <a>
-                Home
-                <span className="underline"></span>
-              </a>
-              <hr className="border-t border-gray-400 my-4" /> {/* Divider */}
-              <a>
-                About us
-                <span className="underline"></span>
-              </a>
-              <hr className="border-t border-gray-400 my-4" /> {/* Divider */}
-              <a>
-                Contact us
-                <span className="underline"></span>
-              </a>
+              <a href="#home">Home</a>
+              <hr className="border-t border-gray-400 my-4" />
+              <a href="#about-us">About us</a>
+              <hr className="border-t border-gray-400 my-4" />
+              <a href="#contact-us">Contact us</a>
             </div>
           </div>
         </nav>

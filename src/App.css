@@ -177,3 +177,23 @@ nav {
   min-width: 150px;
   font-weight: bold;
 }
+
+.perspective {
+  perspective: 1000px;
+}
+
+.card {
+  transition: transform 0.5s;
+}
+
+.card:hover {
+  transform: rotateY(180deg);
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}

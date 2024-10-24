@@ -35,9 +35,6 @@ const ContactUs = () => {
 
   return (
     <div className="relative">
-      {/* Navbar */}
-      <NavBar isVisible={navVisible} />
-
       {/* Full-Screen Container */}
       <div
         className={`flex items-center justify-center h-screen transition-colors duration-700 ease-in-out ${
@@ -47,7 +44,7 @@ const ContactUs = () => {
         {/* Focusable Item */}
         <div
           ref={itemRef}
-          className={`transition-transform duration-700 ease-in-out p-10 md:p-20 rounded-lg shadow-lg ${
+          className={`transition-transform duration-700 ease-in-out p-10 md:p-25 rounded-lg shadow-lg ${
             isFocused ? 'scale-110 md:scale-150 bg-primary text-white' : 'scale-100 bg-gray-200'
           }`}
           style={{ maxWidth: '90%', maxHeight: '80%' }}
