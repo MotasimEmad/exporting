@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import logo from '../assets/logo.png';
 import '../App.css';
+import { Link, useLocation } from 'react-router-dom';
 
 const NavBar = () => {
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -13,7 +15,7 @@ const NavBar = () => {
     <>
       {/* Desktop Navigation */}
       <nav
-        className={`hidden md:block px-16 h-20 fixed top-0 left-0 w-full bg-[#993333] border-b-2 border-secondary transition-transform duration-500 z-50`}
+        className={`hidden md:block px-16 h-20 fixed top-0 left-0 w-full bg-[#993333] border-t-2 border-secondary transition-transform duration-500 z-50`}
       >
         <div className="container mx-auto flex h-full">
           <div className="flex items-center justify-between w-full">
@@ -21,9 +23,11 @@ const NavBar = () => {
               <img src={logo} alt="Logo" className="h-16 rounded-md" />
             </div>
             <div className="md:flex space-x-6 font-normal text-sm text-white ml-6">
-              <a href="#home">Home</a>
-              <a href="#about-us">About us</a>
-              <a href="#contact-us">Contact us</a>
+              <Link to={`/`} className={`hover:text-secondary ${location.pathname === '/' ? 'text-secondary' : ''}`}>Home</Link>
+              <Link to={`/products`} className={`hover:text-secondary ${location.pathname === '/products' ? 'text-secondary' : ''}`}>
+                Products
+              </Link>
+              <Link to={`/contact-us`} className={`hover:text-secondary ${location.pathname === '/contact-us' ? 'text-secondary' : ''}`}>Contact us</Link>
             </div>
           </div>
         </div>
@@ -91,11 +95,13 @@ const NavBar = () => {
               </svg>
             </button>
             <div className="menu md:flex font-normal text-lg py-12 px-4">
-              <a href="#home">Home</a>
+            <Link to={`/`} className={`hover:text-secondary ${location.pathname === '/' ? 'text-secondary' : ''}`}>Home</Link>
+            <hr className="border-t border-gray-400 my-4" />
+              <Link to={`/products`} className={`hover:text-secondary ${location.pathname === '/products' ? 'text-secondary' : ''}`}>
+                Products
+              </Link>
               <hr className="border-t border-gray-400 my-4" />
-              <a href="#about-us">About us</a>
-              <hr className="border-t border-gray-400 my-4" />
-              <a href="#contact-us">Contact us</a>
+              <Link to={`/contact-us`} className={`hover:text-secondary ${location.pathname === '/contact-us' ? 'text-secondary' : ''}`}>Contact us</Link>
             </div>
           </div>
         </nav>

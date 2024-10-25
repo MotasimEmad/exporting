@@ -1,24 +1,24 @@
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
+import HomePage from './pages/HomePage';
+import ProductsPage from './pages/ProductsPage';
 import NavBar from './components/NavBar';
-import Hero from './components/Hero';
-import HorizontalTimeline from './components/TimeLine';
-import ContactUs from './components/ContactUs';
-import WhyUs from './components/ChooseUs';
-import Footer from './components/Footer';
-import ScrollTimeline from './components/ScrollTimeline';
-import Products from './components/Products';
+import ContactUsPage from './pages/ContactUsPage';
+
 
 function App() {
   return (
     <div className="App font-ubuntu">
-      <NavBar />
-      <Hero />
-      <ScrollTimeline />
-      <WhyUs />
-      <Products />
-      <ContactUs />
-      <Footer />
+      <Router>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/contact-us" element={<ContactUsPage />} />
+        </Routes>
+      </Router>
     </div>
+
   );
 }
 
