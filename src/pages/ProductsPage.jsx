@@ -33,8 +33,8 @@ const ProductsPage = () => {
                 <h4 class="mt-2 text-lg font-medium text-primary_dark">Lorem ipsum</h4>
                 <p class="text-primary font-bold">12.55</p>
                 <div
-                  class="absolute bottom-0 left-0 h-0 flex flex-col justify-center items-center bg-secondary opacity-0 xl:group-hover:h-full group-hover:opacity-100 duration-500 group-hover:max-w-lg group-hover:mx-auto rounded-md">
-                  <p class="text-md text-white text-start px-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt velit, et eaque nihil amet corrupti inventore dicta corporis, impedit recusandae, vel molestiae! Exercitationem, impedit fuga! Corporis eaque ex odio esse.</p>
+                  class="absolute bottom-0 left-0 h-0 flex flex-col justify-center items-center bg-secondary opacity-0 group-hover:h-full xl:group-hover:h-full group-hover:opacity-100 duration-500 group-hover:max-w-lg group-hover:mx-auto rounded-md">
+                  <p class="text-lg md:text-md text-white text-start px-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt velit, et eaque nihil amet corrupti inventore dicta corporis, impedit recusandae, vel molestiae! Exercitationem, impedit fuga! Corporis eaque ex odio esse.</p>
                 </div>
               </div>
               <div class="group relative w-full">
@@ -42,8 +42,8 @@ const ProductsPage = () => {
                 <h4 class="mt-2 text-lg font-medium text-primary_dark">Lorem ipsum</h4>
                 <p class="text-primary font-bold">12.55</p>
                 <div
-                  class="absolute bottom-0 left-0 h-0 flex flex-col justify-center items-center bg-secondary opacity-0 xl:group-hover:h-full group-hover:opacity-100 duration-500 group-hover:max-w-lg group-hover:mx-auto rounded-md">
-                  <p class="text-md text-white text-start px-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt velit, et eaque nihil amet corrupti inventore dicta corporis, impedit recusandae, vel molestiae! Exercitationem, impedit fuga! Corporis eaque ex odio esse.</p>
+                  class="absolute bottom-0 left-0 h-0 flex flex-col justify-center items-center bg-secondary opacity-0 group-hover:h-full xl:group-hover:h-full group-hover:opacity-100 duration-500 group-hover:max-w-lg group-hover:mx-auto rounded-md">
+                  <p class="text-lg md:text-md text-white text-start px-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt velit, et eaque nihil amet corrupti inventore dicta corporis, impedit recusandae, vel molestiae! Exercitationem, impedit fuga! Corporis eaque ex odio esse.</p>
                 </div>
               </div>
               <div class="group relative w-full">
@@ -51,8 +51,8 @@ const ProductsPage = () => {
                 <h4 class="mt-2 text-lg font-medium text-primary_dark">Lorem ipsum</h4>
                 <p class="text-primary font-bold">12.55</p>
                 <div
-                  class="absolute bottom-0 left-0 h-0 flex flex-col justify-center items-center bg-secondary opacity-0 xl:group-hover:h-full group-hover:opacity-100 duration-500 group-hover:max-w-lg group-hover:mx-auto rounded-md">
-                  <p class="text-md text-white text-start px-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt velit, et eaque nihil amet corrupti inventore dicta corporis, impedit recusandae, vel molestiae! Exercitationem, impedit fuga! Corporis eaque ex odio esse.</p>
+                  class="absolute bottom-0 left-0 h-0 flex flex-col justify-center items-center bg-secondary opacity-0 group-hover:h-full xl:group-hover:h-full group-hover:opacity-100 duration-500 group-hover:max-w-lg group-hover:mx-auto rounded-md">
+                  <p class="text-lg md:text-md text-white text-start px-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt velit, et eaque nihil amet corrupti inventore dicta corporis, impedit recusandae, vel molestiae! Exercitationem, impedit fuga! Corporis eaque ex odio esse.</p>
                 </div>
               </div>
               <div class="group relative w-full">
@@ -60,8 +60,8 @@ const ProductsPage = () => {
                 <h4 class="mt-2 text-lg font-medium text-primary_dark">Lorem ipsum</h4>
                 <p class="text-primary font-bold">12.55</p>
                 <div
-                  class="absolute bottom-0 left-0 h-0 flex flex-col justify-center items-center bg-secondary opacity-0 xl:group-hover:h-full group-hover:opacity-100 duration-500 group-hover:max-w-lg group-hover:mx-auto rounded-md">
-                  <p class="text-md text-white text-start px-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt velit, et eaque nihil amet corrupti inventore dicta corporis, impedit recusandae, vel molestiae! Exercitationem, impedit fuga! Corporis eaque ex odio esse.</p>
+                  class="absolute bottom-0 left-0 h-0 flex flex-col justify-center items-center bg-secondary opacity-0 group-hover:h-full xl:group-hover:h-full group-hover:opacity-100 duration-500 group-hover:max-w-lg group-hover:mx-auto rounded-md">
+                  <p class="text-lg md:text-md text-white text-start px-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt velit, et eaque nihil amet corrupti inventore dicta corporis, impedit recusandae, vel molestiae! Exercitationem, impedit fuga! Corporis eaque ex odio esse.</p>
                 </div>
               </div>
               <div class="group relative w-full">
@@ -69,8 +69,8 @@ const ProductsPage = () => {
                 <h4 class="mt-2 text-lg font-medium text-primary_dark">Lorem ipsum</h4>
                 <p class="text-primary font-bold">12.55</p>
                 <div
-                  class="absolute bottom-0 left-0 h-0 flex flex-col justify-center items-center bg-secondary opacity-0 xl:group-hover:h-full group-hover:opacity-100 duration-500 group-hover:max-w-lg group-hover:mx-auto rounded-md">
-                  <p class="text-md text-white text-start px-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt velit, et eaque nihil amet corrupti inventore dicta corporis, impedit recusandae, vel molestiae! Exercitationem, impedit fuga! Corporis eaque ex odio esse.</p>
+                  class="absolute bottom-0 left-0 h-0 flex flex-col justify-center items-center bg-secondary opacity-0 group-hover:h-full xl:group-hover:h-full group-hover:opacity-100 duration-500 group-hover:max-w-lg group-hover:mx-auto rounded-md">
+                  <p class="text-lg md:text-md text-white text-start px-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt velit, et eaque nihil amet corrupti inventore dicta corporis, impedit recusandae, vel molestiae! Exercitationem, impedit fuga! Corporis eaque ex odio esse.</p>
                 </div>
               </div>
               <div class="group relative w-full">
@@ -78,8 +78,8 @@ const ProductsPage = () => {
                 <h4 class="mt-2 text-lg font-medium text-primary_dark">Lorem ipsum</h4>
                 <p class="text-primary font-bold">12.55</p>
                 <div
-                  class="absolute bottom-0 left-0 h-0 flex flex-col justify-center items-center bg-secondary opacity-0 xl:group-hover:h-full group-hover:opacity-100 duration-500 group-hover:max-w-lg group-hover:mx-auto rounded-md">
-                  <p class="text-md text-white text-start px-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt velit, et eaque nihil amet corrupti inventore dicta corporis, impedit recusandae, vel molestiae! Exercitationem, impedit fuga! Corporis eaque ex odio esse.</p>
+                  class="absolute bottom-0 left-0 h-0 flex flex-col justify-center items-center bg-secondary opacity-0 group-hover:h-full xl:group-hover:h-full group-hover:opacity-100 duration-500 group-hover:max-w-lg group-hover:mx-auto rounded-md">
+                  <p class="text-lg md:text-md text-white text-start px-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt velit, et eaque nihil amet corrupti inventore dicta corporis, impedit recusandae, vel molestiae! Exercitationem, impedit fuga! Corporis eaque ex odio esse.</p>
                 </div>
               </div>
               <div class="group relative w-full">
@@ -87,36 +87,8 @@ const ProductsPage = () => {
                 <h4 class="mt-2 text-lg font-medium text-primary_dark">Lorem ipsum</h4>
                 <p class="text-primary font-bold">12.55</p>
                 <div
-                  class="absolute bottom-0 left-0 h-0 flex flex-col justify-center items-center bg-secondary opacity-0 xl:group-hover:h-full group-hover:opacity-100 duration-500 group-hover:max-w-lg group-hover:mx-auto rounded-md">
-                  <p class="text-md text-white text-start px-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt velit, et eaque nihil amet corrupti inventore dicta corporis, impedit recusandae, vel molestiae! Exercitationem, impedit fuga! Corporis eaque ex odio esse.</p>
-                </div>
-              </div>
-              <div class="group relative w-full">
-                <img class="object-cover w-96 rounded-md h-72 xl:h-80" src="https://images.unsplash.com/photo-1728649305937-3bdea64ef9f0?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-                <h4 class="mt-2 text-lg font-medium text-primary_dark">Lorem ipsum</h4>
-                <p class="text-primary font-bold">12.55</p>
-                <div
-                  class="absolute bottom-0 left-0 h-0 flex flex-col justify-center items-center bg-secondary opacity-0 xl:group-hover:h-full group-hover:opacity-100 duration-500 group-hover:max-w-lg group-hover:mx-auto rounded-md">
-                  <p class="text-md text-white text-start px-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt velit, et eaque nihil amet corrupti inventore dicta corporis, impedit recusandae, vel molestiae! Exercitationem, impedit fuga! Corporis eaque ex odio esse.</p>
-                </div>
-              </div>
-              <div class="group relative w-full">
-                <img class="object-cover w-96 rounded-md h-72 xl:h-80" src="https://images.unsplash.com/photo-1728649305937-3bdea64ef9f0?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-                <h4 class="mt-2 text-lg font-medium text-primary_dark">Lorem ipsum</h4>
-                <p class="text-primary font-bold">12.55</p>
-                <div
-                  class="absolute bottom-0 left-0 h-0 flex flex-col justify-center items-center bg-secondary opacity-0 xl:group-hover:h-full group-hover:opacity-100 duration-500 group-hover:max-w-lg group-hover:mx-auto rounded-md">
-                  <p class="text-md text-white text-start px-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt velit, et eaque nihil amet corrupti inventore dicta corporis, impedit recusandae, vel molestiae! Exercitationem, impedit fuga! Corporis eaque ex odio esse.</p>
-                </div>
-              </div>
-
-              <div class="group relative w-full">
-                <img class="object-cover w-96 rounded-md h-72 xl:h-80" src="https://images.unsplash.com/photo-1728649305937-3bdea64ef9f0?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-                <h4 class="mt-2 text-lg font-medium text-primary_dark">Lorem ipsum</h4>
-                <p class="text-primary font-bold">12.55</p>
-                <div
-                  class="absolute bottom-0 left-0 h-0 flex flex-col justify-center items-center bg-secondary opacity-0 xl:group-hover:h-full group-hover:opacity-100 duration-500 group-hover:max-w-lg group-hover:mx-auto rounded-md">
-                  <p class="text-md text-white text-start px-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt velit, et eaque nihil amet corrupti inventore dicta corporis, impedit recusandae, vel molestiae! Exercitationem, impedit fuga! Corporis eaque ex odio esse.</p>
+                  class="absolute bottom-0 left-0 h-0 flex flex-col justify-center items-center bg-secondary opacity-0 group-hover:h-full xl:group-hover:h-full group-hover:opacity-100 duration-500 group-hover:max-w-lg group-hover:mx-auto rounded-md">
+                  <p class="text-lg md:text-md text-white text-start px-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt velit, et eaque nihil amet corrupti inventore dicta corporis, impedit recusandae, vel molestiae! Exercitationem, impedit fuga! Corporis eaque ex odio esse.</p>
                 </div>
               </div>
             </div>
