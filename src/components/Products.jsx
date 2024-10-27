@@ -1,6 +1,14 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from '../redux/productsSlice';
 
 const Products = () => {
+    const { isLoading, products } = useSelector((state) => state.product);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getProducts());
+    }, [dispatch]);
 
     useEffect(() => {
         // Scroll to the top of the page when the component mounts
@@ -9,7 +17,6 @@ const Products = () => {
 
     return (
         <section>
-            <hr class="my-12 border-gray-200"></hr>
             <div class="container px-6 py-4 mx-auto">
                 <div class="flex justify-between items-center text-start">
                     <div>
@@ -27,43 +34,18 @@ const Products = () => {
                 <div class="lg:flex lg:-mx-2">
                     <div class="mt-6 lg:mt-0 lg:px-2">
                         <div class="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                            <div class="group relative w-full">
-                                <img class="object-cover w-96 rounded-md h-72 xl:h-80" src="https://images.unsplash.com/photo-1728649305937-3bdea64ef9f0?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-                                <h4 class="mt-2 text-lg font-medium text-primary_dark">Lorem ipsum</h4>
-                                <p class="text-primary font-bold">12.55</p>
-                                <div
-                                    class="absolute bottom-0 left-0 h-0 flex flex-col justify-center items-center bg-secondary opacity-0 group-hover:h-full xl:group-hover:h-full group-hover:opacity-100 duration-500 group-hover:max-w-lg group-hover:mx-auto rounded-md">
-                                    <p class="text-lg md:text-md text-white text-start px-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt velit, et eaque nihil amet corrupti inventore dicta corporis, impedit recusandae, vel molestiae! Exercitationem, impedit fuga! Corporis eaque ex odio esse.</p>
-                                </div>
-                            </div>
-                            <div class="group relative w-full">
-                                <img class="object-cover w-96 rounded-md h-72 xl:h-80" src="https://images.unsplash.com/photo-1728649305937-3bdea64ef9f0?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-                                <h4 class="mt-2 text-lg font-medium text-primary_dark">Lorem ipsum</h4>
-                                <p class="text-primary font-bold">12.55</p>
-                                <div
-                                    class="absolute bottom-0 left-0 h-0 flex flex-col justify-center items-center bg-secondary opacity-0 group-hover:h-full xl:group-hover:h-full group-hover:opacity-100 duration-500 group-hover:max-w-lg group-hover:mx-auto rounded-md">
-                                    <p class="text-lg md:text-md text-white text-start px-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt velit, et eaque nihil amet corrupti inventore dicta corporis, impedit recusandae, vel molestiae! Exercitationem, impedit fuga! Corporis eaque ex odio esse.</p>
-                                </div>
-                            </div>
+                            {products.map(product => (
+                                <div key={product.id} class="group relative w-full">
+                                    <img class="object-cover w-96 rounded-md h-72 xl:h-80" src={product.image} />
+                                    <h4 class="mt-2 text-lg font-medium text-primary_dark">{product.name}</h4>
+                                    <div
+                                        class="absolute bottom-0 left-0 h-0 flex flex-col justify-center items-center bg-secondary opacity-0 group-hover:h-full xl:group-hover:h-full group-hover:opacity-100 duration-500 group-hover:w-full group-hover:mx-auto rounded-md">
+                                        <p class="text-lg md:text-md text-white text-start px-2">{product.description}</p>
 
-                            <div class="group relative w-full">
-                                <img class="object-cover w-96 rounded-md h-72 xl:h-80" src="https://images.unsplash.com/photo-1728649305937-3bdea64ef9f0?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-                                <h4 class="mt-2 text-lg font-medium text-primary_dark">Lorem ipsum</h4>
-                                <p class="text-primary font-bold">12.55</p>
-                                <div
-                                    class="absolute bottom-0 left-0 h-0 flex flex-col justify-center items-center bg-secondary opacity-0 group-hover:h-full xl:group-hover:h-full group-hover:opacity-100 duration-500 group-hover:max-w-lg group-hover:mx-auto rounded-md">
-                                    <p class="text-lg md:text-md text-white text-start px-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt velit, et eaque nihil amet corrupti inventore dicta corporis, impedit recusandae, vel molestiae! Exercitationem, impedit fuga! Corporis eaque ex odio esse.</p>
+                                        <Link to={`/product/${product.id}`} className="bg-primary hover:bg-primary/80 py-3 px-3 rounded-full text-white">Learn more</Link>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="group relative w-full">
-                                <img class="object-cover w-96 rounded-md h-72 xl:h-80" src="https://images.unsplash.com/photo-1728649305937-3bdea64ef9f0?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-                                <h4 class="mt-2 text-lg font-medium text-primary_dark">Lorem ipsum</h4>
-                                <p class="text-primary font-bold">12.55</p>
-                                <div
-                                    class="absolute bottom-0 left-0 h-0 flex flex-col justify-center items-center bg-secondary opacity-0 group-hover:h-full xl:group-hover:h-full group-hover:opacity-100 duration-500 group-hover:max-w-lg group-hover:mx-auto rounded-md">
-                                    <p class="text-lg md:text-md text-white text-start px-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt velit, et eaque nihil amet corrupti inventore dicta corporis, impedit recusandae, vel molestiae! Exercitationem, impedit fuga! Corporis eaque ex odio esse.</p>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     </div>
                 </div>
