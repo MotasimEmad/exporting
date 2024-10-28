@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import NavBar from './NavBar';
+import { Link } from 'react-router-dom';
 
 const ContactUs = () => {
   const itemRef = useRef(null);
@@ -52,13 +53,13 @@ const ContactUs = () => {
           <h2 className="text-2xl md:text-3xl font-bold text-center">
             Get to Know Us!
           </h2>
-          <p className="mt-4 text-md md:text-lg text-center">
+          <p className="mt-4 text-md md:text-lg text-center mb-6">
             Have questions or just want to connect? We’d love to hear from you!
           </p>
 
-          <button className="mt-6 bg-secondary/90 text-white rounded-2xl px-4 py-2">
+          <Link to={`/contact-us`} className="bg-secondary/90 text-white rounded-2xl px-4 py-2">
             Contact Us
-          </button>
+          </Link>
         </div>
       </div>
     </div>

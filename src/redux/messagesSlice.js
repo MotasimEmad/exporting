@@ -39,6 +39,8 @@ const messagesSlice = createSlice({
             .addCase(sendMessage.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.success = action.payload;
+
+                console.log(action.payload);
             })
             .addCase(sendMessage.rejected, (state, action) => {
                 state.isLoading = false;

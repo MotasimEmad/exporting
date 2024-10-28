@@ -2,80 +2,81 @@ const ChooseUs = () => {
     return (
         <>
             <hr class="my-12 border-gray-200"></hr>
-            <section class="text-start bg-white mt-12">
-                <div class="container px-6 py-4 mx-auto">
-                    <div class="lg:flex lg:items-center">
-                        <div class="w-full space-y-12 lg:w-1/2">
-                            <div>
-                                <h1 class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl">
-                                    Why
-                                    <div class="relative inline-block mx-2">
-                                        <span class="absolute -rotate-6 bg-secondary/50 px-2 py-1 inset-0 mt-4"></span>
-                                        <span class="relative text-secondary font-bold">US</span>
-                                    </div>
-                                </h1>
+            <section class="bg-white">
+                <div class="container px-6 py-10 mx-auto">
+                    <h1 class="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl">
+                        Why
+                        <div class="relative inline-block mx-2">
+                                <span class="absolute -rotate-6 bg-secondary/50 px-2 py-1 inset-0 mt-4"></span>
+                                <span class="relative text-secondary font-bold">us</span>
                             </div>
+                    </h1>
 
-                            <div class="md:flex md:items-start md:-mx-4">
-                                <span class="inline-block p-2 text-white bg-primary rounded-xl md:mx-4 ">
-                                    <svg className="w-5 h-5" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z"></path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.468 5.99 5.99 0 0 0-1.925 3.547 5.975 5.975 0 0 1-2.133-1.001A3.75 3.75 0 0 0 12 18Z"></path>
-                                    </svg>
-                                </span>
+                    <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-16 md:grid-cols-2">
+                        <div class="flex flex-col items-center p-6 space-y-3 text-center bg-gray-100 rounded-xl">
+                            <span class="inline-block p-3 text-primary bg-primary/20 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                                </svg>
+                            </span>
 
-                                <div class="mt-4 md:mx-4 md:mt-0">
-                                    <h1 class="text-xl font-semibold text-gray-700 capitalize">Copy & paste components</h1>
+                            <h1 class="text-xl font-semibold text-gray-700 capitalize">Global Expertise with Local Insight</h1>
 
-                                    <p class="mt-3 text-gray-500 ">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ab nulla quod dignissimos vel non corrupti doloribus voluptatum eveniet
-                                    </p>
-                                </div>
-                            </div>
+                            <p class="text-gray-500">
+                            We combine extensive international trade experience with a deep understanding of Sudan’s agricultural landscape, enabling us to provide high-quality products.
+                            </p>
 
-                            <div class="md:flex md:items-start md:-mx-4">
-                                <span class="inline-block p-2 text-white bg-primary rounded-xl md:mx-4 ">
-                                    <svg className="w-5 h-5" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z"></path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.468 5.99 5.99 0 0 0-1.925 3.547 5.975 5.975 0 0 1-2.133-1.001A3.75 3.75 0 0 0 12 18Z"></path>
-                                    </svg>
-                                </span>
-
-
-                                <div class="mt-4 md:mx-4 md:mt-0">
-                                    <h1 class="text-xl font-semibold text-gray-700 capitalize ">Zero Configuration</h1>
-
-                                    <p class="mt-3 text-gray-500 ">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ab nulla quod dignissimos vel non corrupti doloribus voluptatum eveniet
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="md:flex md:items-start md:-mx-4">
-                                <span class="inline-block p-2 text-white bg-primary rounded-xl md:mx-4 ">
-                                    <svg className="w-5 h-5" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z"></path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.468 5.99 5.99 0 0 0-1.925 3.547 5.975 5.975 0 0 1-2.133-1.001A3.75 3.75 0 0 0 12 18Z"></path>
-                                    </svg>
-
-                                </span>
-
-                                <div class="mt-4 md:mx-4 md:mt-0">
-                                    <h1 class="text-xl font-semibold text-gray-700 capitalize ">elegant Dark Mode</h1>
-
-                                    <p class="mt-3 text-gray-500 ">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ab nulla quod dignissimos vel non corrupti doloribus voluptatum eveniet
-                                    </p>
-                                </div>
-                            </div>
+                        
                         </div>
 
-                        <div class="hidden lg:flex lg:items-center lg:w-1/2 lg:justify-center">
-                            <img class="w-[28rem] h-[28rem] object-cover xl:w-[34rem] xl:h-[34rem] rounded-full" src="https://images.unsplash.com/photo-1703226741497-6de4f67c6e11?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
+                        <div class="flex flex-col items-center p-6 space-y-3 text-center bg-gray-100 rounded-xl">
+                            <span class="inline-block p-3 text-primary bg-primary/20 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                                </svg>
+                            </span>
+
+                            <h1 class="text-xl font-semibold text-gray-700 capitalize">Trusted Quality Standards</h1>
+
+                            <p class="text-gray-500">
+                            Our rigorous quality control measures ensure that every product meets or exceeds industry standards, guaranteeing satisfaction.
+                            </p>
+
+                           
+                        </div>
+
+                        <div class="flex flex-col items-center p-6 space-y-3 text-center bg-gray-100 rounded-xl">
+                            <span class="inline-block p-3 text-primary bg-primary/20 rounded-full ">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                                </svg>
+                            </span>
+
+                            <h1 class="text-xl font-semibold text-gray-700 capitalize ">Empowering Local Farmers</h1>
+
+                            <p class="text-gray-500">
+                            We are committed to building strong partnerships with local farmers, providing them with resources and knowledge to enhance their production.
+                            </p>
+
+                           
+                        </div>
+
+                        <div class="flex flex-col items-center p-6 space-y-3 text-center bg-gray-100 rounded-xl">
+                            <span class="inline-block p-3 text-primary bg-primary/20 rounded-full ">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                                </svg>
+                            </span>
+
+                            <h1 class="text-xl font-semibold text-gray-700 capitalize ">Adaptable and Flexible</h1>
+
+                            <p class="text-gray-500">
+                            Our proactive approach allows us to respond quickly to market changes and customer needs, ensuring tailored solutions.
+                            </p>
+
+                           
                         </div>
                     </div>
-
-
                 </div>
             </section>
         </>
