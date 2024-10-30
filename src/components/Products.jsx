@@ -42,7 +42,7 @@ const Products = () => {
                                         class="absolute bottom-0 left-0 h-0 flex flex-col justify-center items-center bg-secondary opacity-0 group-hover:h-full xl:group-hover:h-full group-hover:opacity-100 duration-500 group-hover:w-full group-hover:mx-auto rounded-md">
                                         <p class="text-lg md:text-md text-white text-start px-2">{product.description}</p>
 
-                                        <Link to={`/product/${product.id}`} className="bg-primary hover:bg-primary/80 py-3 px-3 rounded-full text-white">Learn more</Link>
+                                        <Link to={`/product/${product.id}`} className="mt-4 bg-primary hover:bg-primary/80 py-3 px-3 rounded-full text-white">Learn more</Link>
                                     </div>
                                 </div>
                             ))}

@@ -1,8 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getProductById } from '../redux/productDetailsSlice';
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, CSSProperties, useState } from "react";
 import NotFound from "../components/NotFound";
+import Loading from "../components/Loading";
+
+
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
@@ -25,7 +28,9 @@ const ProductDetailsPage = () => {
 
   // Handle loading state
   if (isLoading) {
-    return <div className="font-inter mt-20 text-center">Loading...</div>;
+    return <div className="mt-20 flex justify-center items-center">
+     <Loading />
+    </div>
   }
 
   // Handle empty product object
@@ -41,7 +46,7 @@ const ProductDetailsPage = () => {
           {/* Replace with dynamic image URL */}
           <img
             className="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96"
-            src='https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+            src={product.image}
             alt="product image"
           />
           <div className="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 text-start">

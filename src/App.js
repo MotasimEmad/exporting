@@ -11,14 +11,20 @@ function App() {
   return (
     <div className="App font-ubuntu">
       <Router>
+        <div className="flex flex-col min-h-screen">
         <NavBar />
+        <main className="flex-grow">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/contact-us" element={<ContactUsPage />} />
           <Route path="/product/:id" element={<ProductDetailsPage />} />
         </Routes>
+        </main>
+
+        
       <Footer />
+        </div>
       </Router>
     </div>
 
