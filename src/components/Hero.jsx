@@ -1,3 +1,5 @@
+import { TypeAnimation } from 'react-type-animation';
+
 const Hero = () => {
     return (
         <>
@@ -12,11 +14,17 @@ const Hero = () => {
                     <div class="flex items-center justify-center w-full h-full bg-gray-900/40">
                         <div class="text-center mt-20">
                             <h1 class="text-3xl font-semibold text-white lg:text-5xl">
-                                Together We Archieving More{" "}
-                                <div class="relative inline-block">
-                                    <span class="absolute -rotate-6 bg-secondary/50 px-2 py-1 inset-0 mt-4"></span>
-                                    <span class="relative text-secondary font-bold">Synergy</span>
-                                </div>
+
+                                <TypeAnimation
+                                    sequence={[
+                                        'Together We Achieving More Synergy',
+                                        500,
+                                    ]}
+                                    wrapper="span"
+                                    speed={20}
+                                    style={{ display: 'inline-block' }}
+                                    repeat={Infinity}
+                                />
                             </h1>
                             <a href="#about-us" class="flex justify-center mt-8 cursor-pointer animate-bounce">
                                 <svg

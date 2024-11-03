@@ -1,86 +1,48 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 const ScrollTimeline = () => {
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [visibleSections, setVisibleSections] = useState([]);
+  const [scrollProgress, setScrollProgress] = useState(25);
+  const [activeSection, setActiveSection] = useState(0);
   const timelineRef = useRef(null);
-  const circlesRefs = useRef([]);
-  const progressRef = useRef(0);
-  const animationFrameRef = useRef(null);
+  const sectionsRef = useRef([]);
 
   useEffect(() => {
     const handleScroll = () => {
       if (!timelineRef.current) return;
 
-      const timelineRect = timelineRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
+      const scrollTop = window.scrollY;
+      const timelineTop = timelineRef.current.offsetTop;
+      const timelineHeight = timelineRef.current.offsetHeight;
       
-      // Calculate the start point (when timeline enters viewport)
-      const startPoint = timelineRect.top - windowHeight;
-      // Calculate the end point (when timeline bottom reaches viewport bottom)
-      const endPoint = timelineRect.bottom - windowHeight;
-      
-      // Calculate target progress percentage
-      const total = endPoint - startPoint;
-      const current = window.scrollY - startPoint;
-      const targetProgress = Math.max(0, Math.min(100, (current / total) * 100));
+      const relativeScroll = scrollTop - timelineTop + windowHeight * 0.5;
+      const progress = 25 + ((relativeScroll / timelineHeight) * 75);
+      setScrollProgress(Math.min(100, Math.max(25, progress)));
 
-      // Animate progress smoothly
-      const animateProgress = () => {
-        const diff = targetProgress - progressRef.current;
-        const step = diff * 0.1; // Adjust this value to control animation speed (smaller = slower)
-        
-        if (Math.abs(diff) > 0.1) {
-          progressRef.current += step;
-          setScrollProgress(progressRef.current);
-          animationFrameRef.current = requestAnimationFrame(animateProgress);
-        } else {
-          progressRef.current = targetProgress;
-          setScrollProgress(targetProgress);
-        }
-
-        // Update visible sections based on current progress
-        circlesRefs.current.forEach((circle, index) => {
-          if (circle) {
-            const circleRect = circle.getBoundingClientRect();
-            const circleTop = window.scrollY + circleRect.top;
-            const timelineTop = window.scrollY + timelineRect.top;
-            const circleProgress = ((circleTop - timelineTop) / timelineRect.height) * 100;
-            
-            if (progressRef.current >= circleProgress) {
-              setVisibleSections(prev => prev.includes(index) ? prev : [...prev, index]);
-            } else {
-              setVisibleSections(prev => prev.filter(i => i !== index));
-            }
+      sectionsRef.current.forEach((section, index) => {
+        if (section && index > 0) {
+          const sectionTop = section.offsetTop - timelineTop;
+          const sectionProgress = (relativeScroll / sectionTop) * 100;
+          
+          if (sectionProgress >= 100 && index > activeSection) {
+            setActiveSection(index);
+          } else if (sectionProgress < 90 && index === activeSection) {
+            setActiveSection(index - 1);
           }
-        });
-      };
-
-      // Cancel any existing animation
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
-
-      // Start new animation
-      animationFrameRef.current = requestAnimationFrame(animateProgress);
+        }
+      });
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initial check
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
-    };
-  }, []);
+    window.addEventListener('scroll', handleScroll);
+    setTimeout(handleScroll, 100);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [activeSection]);
 
   const posts = [
     {
       id: 1,
       title: "About us",
-      excerpt: "Tareeg Alhareer International Trade Company was founded by Mr. Omer Imam Hassan Mohamed, a graduate of Shanghai Tongji University with over 22 years of experience in international trade. Our company was established to connect the vast potential of Sudan’s agricultural sector with global markets. We actively participate in local and international fairs, showcasing the richness of Sudan’s agricultural products while building valuable relationships with customers and partners worldwide. Our commitment to sustainability and quality ensures that every product contributes positively to our communities and empowers local farmers.",
+      excerpt: "Tareeg Alhareer International Trade Company was founded by Mr. Omer Imam Hassan Mohamed, a graduate of Shanghai Tongji University with over 22 years of experience in international trade. Our company was established to connect the vast potential of Sudan's agricultural sector with global markets. We actively participate in local and international fairs, showcasing the richness of Sudan's agricultural products while building valuable relationships with customers and partners worldwide. Our commitment to sustainability and quality ensures that every product contributes positively to our communities and empowers local farmers.",
       side: 'left'
     },
     {
@@ -104,18 +66,18 @@ const ScrollTimeline = () => {
   ];
 
   return (
-    <div 
+    <div id='about-us'
       ref={timelineRef}
-      id="about-us" 
       className="relative mt-12 md:mt-8 font-sans pt-0 md:py-4 text-start min-h-screen"
     >
       {/* Timeline */}
-      <div className="absolute md:left-1/2 left-8 top-0 bottom-0 w-[3px] md:w-[4px] bg-gray-300">
+      <div className="absolute left-[21px] md:left-1/2 top-0 bottom-0 w-[3px] md:w-[4px] bg-gray-300">
         <div
-          className="absolute top-0 left-0 w-full bg-primary"
+          className="absolute top-0 left-0 w-full bg-primary transition-transform duration-500 ease-in-out"
           style={{ 
-            height: `${scrollProgress}%`,
-            transition: 'none' // Remove CSS transition to allow JS animation
+            height: '100%',
+            transform: `scaleY(${scrollProgress / 100})`,
+            transformOrigin: 'top'
           }}
         />
       </div>
@@ -124,24 +86,28 @@ const ScrollTimeline = () => {
       <div className="max-w-7xl mx-auto px-4">
         <div className="space-y-24">
           {posts.map((post, index) => {
-            const isImageLeft = index % 2 === 0;
-            const isGroupVisible = visibleSections.includes(index);
+            const isRight = index % 2 === 0;
+            const isActive = index <= activeSection;
+            const shouldShow = index === 0 ? true : isActive;
 
             return (
-              <div key={post.id} className="relative min-h-[200px] md:grid md:grid-cols-2 md:gap-6">
+              <div 
+                key={post.id} 
+                ref={el => sectionsRef.current[index] = el}
+                className="relative min-h-[200px] md:grid md:grid-cols-2 md:gap-6"
+              >
                 {/* Timeline Circle */}
                 <div
-                  ref={(el) => (circlesRefs.current[index] = el)}
-                  className="absolute md:left-1/2 left-8 transform -translate-x-1/2 z-10"
+                  className="absolute left-[16px] md:left-1/2 transform -translate-x-1/2 z-10"
                   style={{ top: '50%' }}
                 >
                   <div
-                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 
-                    ${isGroupVisible ? 'bg-primary border-4 border-primary shadow-lg scale-110' : 'bg-white border-4 border-gray-300 shadow-md scale-100'}`}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500
+                    ${shouldShow ? 'bg-primary border-4 border-primary shadow-lg scale-110' : 'bg-white border-4 border-gray-300 shadow-md scale-100'}`}
                   >
-                    {isGroupVisible && (
+                    {shouldShow && (
                       <svg
-                        className="h-5 w-5 text-white"
+                        className="h-5 w-5 text-white animate-fadeIn"
                         fill="none"
                         strokeWidth="1.5"
                         stroke="currentColor"
@@ -157,64 +123,56 @@ const ScrollTimeline = () => {
                   </div>
                 </div>
 
-                {isImageLeft ? (
-                  <>
-                    {/* Title on the left */}
-                    <div
-                      className={`relative flex items-center justify-center mt-8 pr-4 transition-all duration-500 
-                      ${isGroupVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                    >
-                      <h3 className="text-xl font-semibold text-primary">{post.title}</h3>
-                    </div>
-
-                    {/* Image and description on the right */}
-                    <div
-                      className={`relative transition-all duration-500 
-                      ${isGroupVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                    >
-                      <div className="flex justify-center items-center mt-4 ml-10 md:mx-16">
-                        <div className="w-full max-w-[26rem] bg-white rounded-xl shadow-lg">
-                          <img
-                            className="w-full h-auto rounded-t-md"
-                            src="https://images.unsplash.com/photo-1726711340790-ccaa3ae7e0c9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                            alt={post.title}
-                          />
-                          <p className="text-gray-500 text-sm px-6 pb-8">{post.excerpt}</p>
+                {/* Content */}
+                <div className={`col-span-1 ${!isRight && 'md:col-start-2'}`}>
+                  <div
+                    className={`relative transition-all duration-500 
+                    ${shouldShow ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16 pointer-events-none'}`}
+                  >
+                    <div className="flex flex-col items-center mt-4 ml-16 md:mx-16">
+                      <div className="w-full max-w-[26rem] bg-white rounded-xl shadow-lg">
+                        <img
+                          className="w-full h-auto rounded-t-md"
+                          src="https://images.unsplash.com/photo-1726711340790-ccaa3ae7e0c9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                          alt={post.title}
+                        />
+                        <div className="px-6 py-8">
+                          <h3 className="text-md font-semibold text-primary mb-4">{post.title}</h3>
+                          <p className="text-gray-500 text-sm">{post.excerpt}</p>
                         </div>
                       </div>
                     </div>
-                  </>
-                ) : (
-                  <>
-                    {/* Image and description on the left */}
-                    <div
-                      className={`relative transition-all duration-500 
-                      ${isGroupVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                    >
-                      <div className="flex justify-center items-center mt-4 ml-10 md:mx-16">
-                        <div className="w-full max-w-[26rem] bg-white rounded-xl shadow-lg">
-                          <img
-                            className="w-full h-auto rounded-t-md"
-                            src="https://images.unsplash.com/photo-1726711340790-ccaa3ae7e0c9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                            alt={post.title}
-                          />
-                          <p className="text-gray-500 text-sm px-6 pb-8">{post.excerpt}</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Title on the right */}
-                    <div
-                      className={`relative flex items-center justify-center mt-8 pl-4 transition-all duration-500 
-                      ${isGroupVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                    >
-                      <h3 className="text-xl font-semibold text-primary">{post.title}</h3>
-                    </div>
-                  </>
-                )}
+                  </div>
+                </div>
               </div>
             );
           })}
+        </div>
+      </div>
+
+      {/* End Circle */}
+      <div 
+        className="absolute left-[16px] md:left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2 z-10"
+      >
+        <div
+          className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500 
+          ${scrollProgress >= 95 ? 'bg-primary border-4 border-primary shadow-lg scale-110' : 'bg-white border-4 border-gray-300 shadow-md scale-100'}`}
+        >
+          {scrollProgress >= 95 && (
+            <svg
+              className="h-5 w-5 text-white animate-fadeIn"
+              fill="none"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4.5 12.75l6 6 9-13.5"
+              />
+            </svg>
+          )}
         </div>
       </div>
     </div>

@@ -1,4 +1,3 @@
-import NavBar from '../components/NavBar';
 import Hero from '../components/Hero';
 import ContactUs from '../components/ContactUs';
 import WhyUs from '../components/ChooseUs';

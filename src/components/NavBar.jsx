@@ -26,7 +26,7 @@ const NavBar = () => {
         <div className="container mx-auto flex h-full">
           <div className="flex items-center justify-between w-full">
             <Link to={`/`} className="flex items-center">
-              <img src={logo} alt="Logo" className="h-16 rounded-md" />
+              <img src={logo} alt="Logo" className="h-14 rounded-md" />
             </Link>
             <div className="md:flex space-x-6 font-normal text-sm text-white ml-6">
               <Link
