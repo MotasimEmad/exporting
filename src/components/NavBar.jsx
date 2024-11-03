@@ -1,6 +1,6 @@
 // NavBar.js
 import React, { useState } from 'react';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo2.png';
 import '../App.css';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -44,6 +44,14 @@ const NavBar = () => {
                 }`}
               >
                 Products
+              </Link>
+              <Link
+                to="/team"
+                className={`hover:text-secondary ${
+                  location.pathname.startsWith('/team') ? 'text-secondary' : ''
+                }`}
+              >
+                Team
               </Link>
               <Link
                 to={`/contact-us`}
@@ -129,6 +137,15 @@ const NavBar = () => {
               }`}
             >
               Products
+            </Link>
+            <Link
+              to="/team"
+              onClick={closeMenu}
+              className={`text-white text-lg hover:text-secondary ${
+                location.pathname.startsWith('/team') ? 'text-secondary' : ''
+              }`}
+            >
+              Team
             </Link>
             <Link
               to={`/contact-us`}

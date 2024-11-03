@@ -9,6 +9,7 @@ const ContactUsPage = () => {
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
+    const [companyName, setCompanyName] = useState("");
     const [message, setMessage] = useState("");
     const { isLoading } = useSelector((state) => state.message);
 
@@ -46,6 +47,7 @@ const ContactUsPage = () => {
             full_name: fullName, 
             email: email, 
             phone_number: phoneNumber, 
+            company_name: companyName, 
             message: message 
         }))
             .unwrap()
@@ -67,70 +69,66 @@ const ContactUsPage = () => {
             });
     };
 
+    const backgroundUrl = "https://images.unsplash.com/photo-1609203599090-1bea00d207b9?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
     return (
-        <section className="mt-20 text-start min-h-screen bg-white">
-            <div className="text-start"><ToastContainer /></div>
-            <div className="container px-6 py-10 mx-auto">
-                <div className="lg:flex lg:items-center lg:-mx-10">
-                    <div className="lg:w-1/2 lg:mx-10">
-                        <h1 className="text-2xl font-semibold text-primary capitalize lg:text-3xl">Let’s talk</h1>
-
-                        <p className="mt-4 text-gray-500">
-                            Ask us everything and we would  
-                            <div className="mx-1 relative inline-block">
-                                <span className="absolute -rotate-6 bg-secondary/50 px-2 py-1 inset-0 mt-4"></span>
-                                <span className="relative text-secondary font-bold uppercase">love</span>
-                            </div>
-                            to hear from you
+        <section class="min-h-screen bg-cover pt-8" style={{
+            backgroundImage: `url('${backgroundUrl}')`,
+          }}>
+        <div class="flex flex-col min-h-screen bg-black/60 text-start">
+        <div className="text-start"><ToastContainer /></div>
+            <div class="container flex flex-col flex-1 px-6 py-12 mx-auto">
+                <div class="flex-1 lg:flex lg:-mx-6">
+                    <div class="text-white lg:w-1/2 lg:mx-6">
+                        <h1 class="text-2xl font-semibold capitalize lg:text-3xl mt-28">Ultimate design solution</h1>
+    
+                        <p class="max-w-xl mt-6">
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem quo
+                            aliquid molestiae hic incidunt beatae placeat accusantium! Alias ex quisquam ab tempora. Ratione
+                            autem doloremque ducimus numquam doloribus, error sed.
                         </p>
-
-                        <form className="mt-12">
-                            <div className="-mx-2 md:items-center md:flex">
-                                <div className="flex-1 px-2">
-                                    <label className="block mb-2 text-sm text-gray-600">Full Name</label>
-                                    <input 
-                                        value={fullName} 
-                                        onChange={(e) => setFullName(e.target.value)} 
-                                        type="text" 
-                                        placeholder="John Doe" 
-                                        className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-primary/20 focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-40" 
-                                    />
+                    </div>
+    
+                    <div class="mt-8 lg:w-1/2 lg:mx-6">
+                        <div class="w-full px-8 py-10 mx-auto overflow-hidden bg-gray-200 shadow-2xl rounded-xl lg:max-w-xl">
+                            <h1 class="text-xl font-medium text-gray-700">Contact form</h1>
+    
+                            <p class="mt-2 text-gray-500">
+                                Ask us everything and we would love
+                                to hear from you
+                            </p>
+    
+                            <form class="mt-6">
+                                <div class="flex-1">
+                                    <label class="block mb-2 text-sm text-gray-600">Full Name</label>
+                                    <input value={fullName} 
+                                    onChange={(e) => setFullName(e.target.value)} type="text" placeholder="John Doe" class="block w-full px-5 py-3 mt-2 text-gray-700 bg-gray-100 border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring" />
+                                </div>
+    
+                                <div class="flex-1 mt-6">
+                                    <label class="block mb-2 text-sm text-gray-600">Email address</label>
+                                    <input value={email} 
+                                    onChange={(e) => setEmail(e.target.value)} type="email" placeholder="johndoe@example.com" class="block w-full px-5 py-3 mt-2 text-gray-700 bg-gray-100 border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring" />
                                 </div>
 
-                                <div className="flex-1 px-2 mt-4 md:mt-0">
-                                    <label className="block mb-2 text-sm text-gray-600">Email address</label>
-                                    <input 
-                                        value={email} 
-                                        onChange={(e) => setEmail(e.target.value)} 
-                                        type="email" 
-                                        placeholder="johndoe@example.com" 
-                                        className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-primary/20 focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-40" 
-                                    />
+                                <div class="flex-1 mt-6">
+                                    <label class="block mb-2 text-sm text-gray-600">Phone number</label>
+                                    <input value={phoneNumber} 
+                                    onChange={(e) => setPhoneNumber(e.target.value)} type="text" placeholder="xxxxxxxxx" class="block w-full px-5 py-3 mt-2 text-gray-700 bg-gray-100 border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring" />
                                 </div>
-                            </div>
 
-                            <div className="flex-1 mt-4">
-                                <label className="block mb-2 text-sm text-gray-600">Phone Number</label>
-                                <input 
-                                    value={phoneNumber} 
-                                    onChange={(e) => setPhoneNumber(e.target.value)} 
-                                    type="text" 
-                                    placeholder="xxxxxxxxxx" 
-                                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-primary/20 focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-40" 
-                                />
-                            </div>
+                                <div class="flex-1 mt-6">
+                                    <label class="block mb-2 text-sm text-gray-600">Company name</label>
+                                    <input value={companyName} 
+                                    onChange={(e) => setCompanyName(e.target.value)} type="text" placeholder="Company Name" class="block w-full px-5 py-3 mt-2 text-gray-700 bg-gray-100 border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring" />
+                                </div>
+    
+                                <div class="w-full mt-6">
+                                    <label class="block mb-2 text-sm text-gray-600">Message</label>
+                                    <textarea value={message} 
+                                    onChange={(e) => setMessage(e.target.value)} class="block w-full h-32 px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-gray-100 border border-gray-200 rounded-md md:h-48 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring" placeholder="Message"></textarea>
+                                </div>
 
-                            <div className="w-full mt-4">
-                                <label className="block mb-2 text-sm text-gray-600">Message</label>
-                                <textarea 
-                                    value={message} 
-                                    onChange={(e) => setMessage(e.target.value)} 
-                                    className="block w-full h-32 px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md md:h-56 focus:border-primary/20 focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-40" 
-                                    placeholder="Message"
-                                ></textarea>
-                            </div>
-
-                            <button 
+                                <button 
                                 type="button"
                                 onClick={handleSubmitClick} 
                                 disabled={isLoading} 
@@ -138,19 +136,14 @@ const ContactUsPage = () => {
                             >
                                 {isLoading ? 'Sending ...' : 'Get in touch'}
                             </button>
-                        </form>
-                    </div>
 
-                    <div className="mt-12 lg:flex lg:mt-0 lg:flex-col lg:items-center lg:w-1/2 lg:mx-10">
-                        <img 
-                            className="hidden object-cover mx-auto rounded-full lg:block shrink-0 w-96 h-96 border-4 border-secondary" 
-                            src="https://images.unsplash.com/photo-1528747045269-390fe33c19f2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                            alt="contact image" 
-                        />
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
     );
 };
 

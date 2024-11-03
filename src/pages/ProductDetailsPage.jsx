@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getProductById } from '../redux/productDetailsSlice';
 import { useParams } from "react-router-dom";
-import { useEffect, CSSProperties, useState } from "react";
+import { useEffect } from "react";
 import NotFound from "../components/NotFound";
 import Loading from "../components/Loading";
 
