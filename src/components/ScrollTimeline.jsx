@@ -2,19 +2,21 @@ import React, { useState, useEffect, useRef } from 'react';
 
 const ScrollTimeline = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [activeSection, setActiveSection] = useState(0);
   const timelineRef = useRef(null);
   const sectionsRef = useRef([]);
-  const firstCircleRef = useRef(null);
+  const circlesRef = useRef([]);
   const mainTimelineRef = useRef(null);
+  const [sectionStates, setSectionStates] = useState([]);
 
   useEffect(() => {
     const setTimelineTop = () => {
-      if (firstCircleRef.current && mainTimelineRef.current && timelineRef.current) {
-        const circleRect = firstCircleRef.current.getBoundingClientRect();
+      if (circlesRef.current[0] && mainTimelineRef.current && timelineRef.current) {
+        const circleRect = circlesRef.current[0].getBoundingClientRect();
         const containerRect = timelineRef.current.getBoundingClientRect();
-        const topOffset = circleRect.top - containerRect.top + (firstCircleRef.current.clientHeight / 2);
-        
+        const topOffset =
+          circleRect.top -
+          containerRect.top +
+          circlesRef.current[0].clientHeight / 2;
         mainTimelineRef.current.style.top = `${topOffset}px`;
       }
     };
@@ -23,65 +25,70 @@ const ScrollTimeline = () => {
     window.addEventListener('resize', setTimelineTop);
 
     const handleScroll = () => {
-      if (!timelineRef.current) return;
+      if (!timelineRef.current || !mainTimelineRef.current) return;
 
       const windowHeight = window.innerHeight;
       const scrollTop = window.scrollY;
-      const timelineTop = timelineRef.current.offsetTop;
+      const timelineRect = timelineRef.current.getBoundingClientRect();
+      const timelineTop = timelineRect.top + scrollTop;
       const timelineHeight = timelineRef.current.offsetHeight;
+      const viewportCenter = scrollTop + windowHeight / 2;
 
-      const relativeScroll = scrollTop - timelineTop + windowHeight * 0.5;
+      const relativeScroll = viewportCenter - timelineTop;
       const progress = (relativeScroll / timelineHeight) * 100;
       setScrollProgress(Math.min(100, Math.max(0, progress)));
 
-      sectionsRef.current.forEach((section, index) => {
-        if (section) {
-          const sectionTop = section.offsetTop - timelineTop;
-          const sectionProgress = (relativeScroll / sectionTop) * 100;
+      const newSectionStates = circlesRef.current.map((circle, index) => {
+        if (!circle) return false;
 
-          if (sectionProgress >= 100 && index > activeSection) {
-            setActiveSection(index);
-          } else if (sectionProgress < 90 && index === activeSection) {
-            // Prevent activeSection from going below 0
-            setActiveSection(index > 0 ? index - 1 : 0);
-          }
-        }
+        const circleRect = circle.getBoundingClientRect();
+        const circleTop = circleRect.top + scrollTop;
+        const circleBottom = circleTop + circleRect.height;
+        const lineTop = timelineTop + (parseFloat(mainTimelineRef.current.style.top) || 0);
+        const lineHeight = (progress / 120) * timelineHeight;
+        const lineBottom = lineTop + lineHeight;
+
+        return lineBottom >= circleTop;
       });
+
+      setSectionStates(newSectionStates);
     };
 
     window.addEventListener('scroll', handleScroll);
-    // Initialize on mount
     setTimeout(handleScroll, 100);
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', setTimelineTop);
     };
-  }, [activeSection]);
+  }, []);
 
   const posts = [
     {
       id: 2,
-      title: "Our Story",
-      excerpt: "The journey of Tareeg Alhareer began with a vision: to elevate Sudan's agricultural treasures and promote their availability in global markets. With a passion for sustainable practices, we tap into local knowledge and expertise, working closely with farmers to enhance our offerings. Through collaboration and open communication, we have transformed our operations into a platform that uplifts local communities while fostering enduring partnerships that empower farmers and elevate Sudan's agricultural industry.",
-      side: 'right'
+      title: 'Our Story',
+      excerpt:
+        "The journey of Tareeg Alhareer began with a vision: to elevate Sudan's agricultural treasures and promote their availability in global markets. With a passion for sustainable practices, we tap into local knowledge and expertise, working closely with farmers to enhance our offerings.",
+      side: 'right',
     },
     {
       id: 3,
-      title: "Our Mission",
-      excerpt: "Our mission is to provide innovative and world-class solutions tailored to Sudan's agribusiness and export sectors. We aim to enhance productivity by equipping local farmers with advanced technologies and best practices, fostering economic development across Sudan. By ensuring that every product meets the highest international standards, we are dedicated to quality and excellence in all our offerings.",
-      side: 'left'
+      title: 'Our Mission',
+      excerpt:
+        'Our mission is to provide innovative and world-class solutions tailored to Sudan\'s agribusiness and export sectors. We aim to enhance productivity by equipping local farmers with advanced technologies and best practices, fostering economic development across Sudan.',
+      side: 'left',
     },
     {
       id: 4,
-      title: "Our Vision",
-      excerpt: "We aspire to be the leading authority in Sudan's agribusiness sector, dedicated to empowering local farmers and enhancing the agricultural value chain. Our vision encompasses continuous improvement and innovation, ensuring we remain at the forefront of the industry. By fostering strong relationships with stakeholders, we aim to create lasting value and contribute to sustainable economic growth in Sudan.",
-      side: 'right'
-    }
+      title: 'Our Vision',
+      excerpt:
+        "We aspire to be the leading authority in Sudan's agribusiness sector, dedicated to empowering local farmers and enhancing the agricultural value chain. Our vision encompasses continuous improvement and innovation, ensuring we remain at the forefront of the industry.",
+      side: 'right',
+    },
   ];
 
   return (
     <div
-      id='about-us'
+      id="about-us"
       ref={timelineRef}
       className="relative mt-12 md:mt-8 font-sans pt-0 md:py-4 text-start min-h-screen"
     >
@@ -91,41 +98,42 @@ const ScrollTimeline = () => {
         ref={mainTimelineRef}
       >
         <div
-          className="absolute top-0 left-0 w-full bg-primary transition-transform duration-500 ease-in-out"
-          style={{ 
+          className="absolute top-0 left-0 w-full bg-primary transition-transform duration-300 ease-in-out"
+          style={{
             height: `${scrollProgress}%`,
-            transformOrigin: 'top'
+            transformOrigin: 'top',
           }}
         />
       </div>
-
-      {/* Removed Initial Timeline Circle */}
 
       {/* Content Container */}
       <div className="max-w-7xl mx-auto px-4">
         <div className="space-y-24">
           {posts.map((post, index) => {
             const isRight = post.side === 'right';
-            const isActive = index <= activeSection;
-            const shouldShow = isActive;
+            const isActive = sectionStates[index];
 
             return (
-              <div 
-                key={post.id} 
-                ref={el => sectionsRef.current[index] = el}
-                className="relative min-h-[200px] md:grid md:grid-cols-2 md:gap-6"
+              <div
+                key={post.id}
+                ref={(el) => (sectionsRef.current[index] = el)}
+                className="relative min-h-[200px] md:grid md:grid-cols-12 md:gap-6"
               >
                 {/* Timeline Circle */}
                 <div
                   className="absolute ml-6 md:ml-0 md:left-1/2 transform -translate-x-1/2 z-10"
+                  ref={(el) => (circlesRef.current[index] = el)}
                   style={{ top: '50%' }}
                 >
                   <div
-                    ref={index === 0 ? firstCircleRef : null}
-                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500
-                    ${shouldShow ? 'bg-primary border-4 border-primary shadow-lg scale-110' : 'bg-white border-4 border-gray-300 shadow-md scale-100'}`}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300
+                    ${
+                      isActive
+                        ? 'bg-primary border-4 border-primary shadow-lg scale-110'
+                        : 'bg-white border-4 border-gray-300 shadow-md scale-100'
+                    }`}
                   >
-                    {shouldShow && (
+                    {isActive && (
                       <svg
                         className="h-5 w-5 text-white animate-fadeIn"
                         fill="none"
@@ -143,27 +151,53 @@ const ScrollTimeline = () => {
                   </div>
                 </div>
 
-                {/* Content */}
-                <div className={`col-span-1 ${!isRight && 'md:col-start-2'}`}>
+                {/* Title Section */}
+                <div
+                  className={`col-span-12 md:col-span-5 ${
+                    isRight ? 'md:col-start-1' : 'md:col-start-8'
+                  } flex items-center justify-center h-full`}
+                >
                   <div
-                    className={`relative transition-all duration-500 
-                    ${shouldShow ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16 pointer-events-none'}`}
+                    className={`text-center w-full transition-all duration-300
+                    ${
+                      isActive
+                        ? 'opacity-100 translate-y-0'
+                        : 'opacity-0 translate-y-16 pointer-events-none'
+                    }`}
                   >
-                    <div className="flex flex-col items-center mt-4 ml-16 md:mx-16">
-                      <div className="w-full max-w-[26rem] bg-white rounded-xl shadow-lg">
-                        <img
-                          className="w-full h-36 rounded-t-md"
-                          src="https://images.unsplash.com/photo-1726711340790-ccaa3ae7e0c9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                          alt={post.title}
-                        />
-                        <div className="px-6 py-8">
-                          <h3 className="text-lg font-semibold text-primary mb-4">{post.title}</h3>
-                          <p className="text-gray-500 text-sm">{post.excerpt}</p>
-                        </div>
-                      </div>
-                    </div>
+                    <h3 className="text-2xl font-bold text-primary">{post.title}</h3>
                   </div>
                 </div>
+
+                {/* Content */}
+                <div
+  className={`col-span-12 md:col-span-5 ${
+    isRight ? 'md:col-start-8' : 'md:col-start-1'
+  } md:ml-0 md:mr-20`} // Mobile margin, reset on desktop
+>
+  <div
+    className={`ml-16 relative transition-all duration-300
+    ${
+      isActive
+        ? 'opacity-100 translate-y-0'
+        : 'opacity-0 translate-y-16 pointer-events-none'
+    }`}
+  >
+    <div className="flex flex-col items-center mt-4 md:mt-0 md:mx-0">
+      <div className="w-full max-w-md bg-white rounded-xl shadow-lg">
+        <img
+          className="w-full h-36 rounded-t-md object-cover"
+          src="https://plus.unsplash.com/premium_photo-1670984935550-5ce2e220977a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt={post.title}
+        />
+        <div className="px-6 py-8">
+          <p className="text-gray-500 text-sm md:text-lg">{post.excerpt}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
               </div>
             );
           })}
@@ -171,12 +205,14 @@ const ScrollTimeline = () => {
       </div>
 
       {/* End Circle */}
-      <div 
-        className="absolute ml-10 md:ml-0 md:left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2 z-10"
-      >
+      <div className="absolute ml-10 md:ml-0 md:left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2 z-10">
         <div
-          className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500 
-          ${scrollProgress >= 95 ? 'bg-primary border-4 border-primary shadow-lg scale-110' : 'bg-white border-4 border-gray-300 shadow-md scale-100'}`}
+          className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300
+          ${
+            scrollProgress >= 95
+              ? 'bg-primary border-4 border-primary shadow-lg scale-110'
+              : 'bg-white border-4 border-gray-300 shadow-md scale-100'
+          }`}
         >
           {scrollProgress >= 95 && (
             <svg
@@ -186,11 +222,7 @@ const ScrollTimeline = () => {
               stroke="currentColor"
               viewBox="0 0 24 24"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4.5 12.75l6 6 9-13.5"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
             </svg>
           )}
         </div>
