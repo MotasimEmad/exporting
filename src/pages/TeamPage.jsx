@@ -1,4 +1,10 @@
+import { useEffect } from "react";
+
 const TeamPage = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
   return (
 
     <main class="container mx-auto px-6 py-10 mt-12">

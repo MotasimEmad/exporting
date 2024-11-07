@@ -45,7 +45,7 @@ const ScrollTimeline = () => {
         const circleTop = circleRect.top + scrollTop;
         const circleBottom = circleTop + circleRect.height;
         const lineTop = timelineTop + (parseFloat(mainTimelineRef.current.style.top) || 0);
-        const lineHeight = (progress / 120) * timelineHeight;
+        const lineHeight = (progress / 110) * timelineHeight;
         const lineBottom = lineTop + lineHeight;
 
         return lineBottom >= circleTop;
@@ -64,25 +64,32 @@ const ScrollTimeline = () => {
 
   const posts = [
     {
+      id: 1,
+      title: 'About Us',
+      excerpt:
+        "Tareeg Alhareer International Trade Company was founded by Mr. Omer Imam Hassan Mohamed, a graduate of Shanghai Tongji University with over 22 years of experience in international trade.",
+      side: 'right',
+    },
+    {
       id: 2,
       title: 'Our Story',
       excerpt:
         "The journey of Tareeg Alhareer began with a vision: to elevate Sudan's agricultural treasures and promote their availability in global markets. With a passion for sustainable practices, we tap into local knowledge and expertise, working closely with farmers to enhance our offerings.",
-      side: 'right',
+      side: 'left',
     },
     {
       id: 3,
       title: 'Our Mission',
       excerpt:
         'Our mission is to provide innovative and world-class solutions tailored to Sudan\'s agribusiness and export sectors. We aim to enhance productivity by equipping local farmers with advanced technologies and best practices, fostering economic development across Sudan.',
-      side: 'left',
+      side: 'right',
     },
     {
       id: 4,
       title: 'Our Vision',
       excerpt:
         "We aspire to be the leading authority in Sudan's agribusiness sector, dedicated to empowering local farmers and enhancing the agricultural value chain. Our vision encompasses continuous improvement and innovation, ensuring we remain at the forefront of the industry.",
-      side: 'right',
+      side: 'left',
     },
   ];
 
@@ -127,11 +134,10 @@ const ScrollTimeline = () => {
                 >
                   <div
                     className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300
-                    ${
-                      isActive
+                    ${isActive
                         ? 'bg-primary border-4 border-primary shadow-lg scale-110'
                         : 'bg-white border-4 border-gray-300 shadow-md scale-100'
-                    }`}
+                      }`}
                   >
                     {isActive && (
                       <svg
@@ -153,50 +159,46 @@ const ScrollTimeline = () => {
 
                 {/* Title Section */}
                 <div
-                  className={`col-span-12 md:col-span-5 ${
-                    isRight ? 'md:col-start-1' : 'md:col-start-8'
-                  } flex items-center justify-center h-full`}
+                  className={`col-span-12 md:col-span-5 ${isRight ? 'md:col-start-1' : 'md:col-start-8'
+                    } flex items-center justify-center h-full`}
                 >
                   <div
                     className={`text-center w-full transition-all duration-300
-                    ${
-                      isActive
+                    ${isActive
                         ? 'opacity-100 translate-y-0'
                         : 'opacity-0 translate-y-16 pointer-events-none'
-                    }`}
+                      }`}
                   >
-                    <h3 className="text-2xl font-bold text-primary">{post.title}</h3>
+                    <h3 className={`text-2xl font-bold text-primary hidden md:block`}>{post.title}</h3>
                   </div>
                 </div>
-
                 {/* Content */}
                 <div
-  className={`col-span-12 md:col-span-5 ${
-    isRight ? 'md:col-start-8' : 'md:col-start-1'
-  } md:ml-0 md:mr-20`} // Mobile margin, reset on desktop
->
-  <div
-    className={`ml-16 relative transition-all duration-300
-    ${
-      isActive
-        ? 'opacity-100 translate-y-0'
-        : 'opacity-0 translate-y-16 pointer-events-none'
-    }`}
-  >
-    <div className="flex flex-col items-center mt-4 md:mt-0 md:mx-0">
-      <div className="w-full max-w-md bg-white rounded-xl shadow-lg">
-        <img
-          className="w-full h-36 rounded-t-md object-cover"
-          src="https://plus.unsplash.com/premium_photo-1670984935550-5ce2e220977a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt={post.title}
-        />
-        <div className="px-6 py-8">
-          <p className="text-gray-500 text-sm md:text-lg">{post.excerpt}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+                  className={`col-span-12 md:col-span-5 ${isRight ? 'md:col-start-8' : 'md:col-start-1'
+                    } md:ml-0 md:mr-20`} // Mobile margin, reset on desktop
+                >
+                  <div
+                    className={`ml-16 relative transition-all duration-300
+    ${isActive
+                        ? 'opacity-100 translate-y-0'
+                        : 'opacity-0 translate-y-16 pointer-events-none'
+                      }`}
+                  >
+                    <div className="flex flex-col items-center mt-4 md:mt-0 md:mx-0">
+                      <div className="w-full max-w-md bg-white rounded-xl shadow-lg">
+                        <img
+                          className="w-full h-36 rounded-t-md object-cover"
+                          src="https://plus.unsplash.com/premium_photo-1670984935550-5ce2e220977a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                          alt={post.title}
+                        />
+                        <div className="px-6 py-8">
+                          <h3 className="block md:hidden text-md font-bold text-primary mb-2">{post.title}</h3>
+                          <p className="text-gray-500 text-sm md:text-lg">{post.excerpt}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
               </div>
             );
@@ -208,11 +210,10 @@ const ScrollTimeline = () => {
       <div className="absolute ml-10 md:ml-0 md:left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2 z-10">
         <div
           className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300
-          ${
-            scrollProgress >= 95
+          ${scrollProgress >= 95
               ? 'bg-primary border-4 border-primary shadow-lg scale-110'
               : 'bg-white border-4 border-gray-300 shadow-md scale-100'
-          }`}
+            }`}
         >
           {scrollProgress >= 95 && (
             <svg
