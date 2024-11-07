@@ -210,12 +210,12 @@ const ScrollTimeline = () => {
       <div className="absolute ml-10 md:ml-0 md:left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2 z-10">
         <div
           className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300
-          ${scrollProgress >= 95
+          ${scrollProgress >= 100
               ? 'bg-primary border-4 border-primary shadow-lg scale-110'
               : 'bg-white border-4 border-gray-300 shadow-md scale-100'
             }`}
         >
-          {scrollProgress >= 95 && (
+          {scrollProgress >= 100 && (
             <svg
               className="h-5 w-5 text-white animate-fadeIn"
               fill="none"

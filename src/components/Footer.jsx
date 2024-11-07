@@ -10,7 +10,7 @@ const Footer = () => {
                             <img class="w-auto h-16" src={logo} alt="logo" />
                         </a>
 
-                        <p class="max-w-md mx-auto mt-4 text-gray-100">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        <p class="max-w-md mx-auto mt-4 text-gray-100">Rooted in quality, driven by trust.</p>
                     </div>
 
                     <hr class="my-10 border-gray-200" />
