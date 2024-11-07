@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getProductById } from '../redux/productDetailsSlice';
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import NotFound from "../components/NotFound";
 import Loading from "../components/Loading";
@@ -29,7 +29,7 @@ const ProductDetailsPage = () => {
   // Handle loading state
   if (isLoading) {
     return <div className="mt-20 flex justify-center items-center">
-     <Loading />
+      <Loading />
     </div>
   }
 
@@ -42,6 +42,11 @@ const ProductDetailsPage = () => {
   return (
     <section className="bg-white mt-20">
       <div className="container px-6 py-10 mx-auto text-start">
+        <Link to={`/products/`} className="flex justify-center text-white bg-primary hover:bg-primary/90 w-14 py-4 px-2 rounded-lg">
+        <svg className="mx-1 w-6 h-6" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18"></path>
+            </svg>
+        </Link>
         <div className="mt-8 lg:-mx-6 lg:flex lg:items-center">
           {/* Replace with dynamic image URL */}
           <img

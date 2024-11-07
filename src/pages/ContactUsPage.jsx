@@ -79,18 +79,16 @@ const ContactUsPage = () => {
             <div class="container flex flex-col flex-1 px-6 py-12 mx-auto">
                 <div class="flex-1 lg:flex lg:-mx-6">
                     <div class="text-white lg:w-1/2 lg:mx-6">
-                        <h1 class="text-2xl font-semibold capitalize lg:text-3xl mt-28">Ultimate design solution</h1>
+                        <h1 class="text-2xl font-semibold capitalize lg:text-3xl mt-28">Ultimate solution</h1>
     
                         <p class="max-w-xl mt-6">
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem quo
-                            aliquid molestiae hic incidunt beatae placeat accusantium! Alias ex quisquam ab tempora. Ratione
-                            autem doloremque ducimus numquam doloribus, error sed.
+                            Great business starts with a conversation. Reach out to us today, and let’s discuss how we can support your needs.
                         </p>
                     </div>
     
                     <div class="mt-8 lg:w-1/2 lg:mx-6">
                         <div class="w-full px-8 py-10 mx-auto overflow-hidden bg-gray-200 shadow-2xl rounded-xl lg:max-w-xl">
-                            <h1 class="text-xl font-medium text-gray-700">Contact form</h1>
+                            <h1 class="text-xl font-medium text-gray-700">Contact us</h1>
     
                             <p class="mt-2 text-gray-500">
                                 Ask us everything and we would love
