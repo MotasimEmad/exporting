@@ -45,7 +45,7 @@ const ScrollTimeline = () => {
         const circleTop = circleRect.top + scrollTop;
         const circleBottom = circleTop + circleRect.height;
         const lineTop = timelineTop + (parseFloat(mainTimelineRef.current.style.top) || 0);
-        const lineHeight = (progress / 110) * timelineHeight;
+        const lineHeight = (progress / 115) * timelineHeight;
         const lineBottom = lineTop + lineHeight;
 
         return lineBottom >= circleTop;
@@ -126,15 +126,31 @@ const ScrollTimeline = () => {
                 ref={(el) => (sectionsRef.current[index] = el)}
                 className="relative min-h-[200px] md:grid md:grid-cols-12 md:gap-6"
               >
-                {/* Timeline Circle */}
-                <div
-                  className="absolute ml-6 md:ml-0 md:left-1/2 transform -translate-x-1/2 z-10"
-                  ref={(el) => (circlesRef.current[index] = el)}
-                  style={{ top: '50%' }}
-                >
+                {/* Timeline Circle with Title */}
+                <div className="absolute ml-6 md:ml-0 md:left-1/2 transform -translate-x-1/2 z-10 flex items-center"
+                     ref={(el) => (circlesRef.current[index] = el)}
+                     style={{ top: '50%' }}>
+                  {/* Title on the left/right of circle */}
+                  <div
+                    className={`hidden md:block absolute ${
+                      isRight ? 'right-80' : 'left-80'
+                    } transform -translate-y-1/2 whitespace-nowrap`}
+                  >
+                    <h3
+                      className={`text-2xl font-bold text-primary transition-all duration-300
+                        ${isActive
+                          ? 'opacity-100 translate-x-0'
+                          : `opacity-0 ${isRight ? '-translate-x-8' : 'translate-x-8'}`
+                        }`}
+                    >
+                      {post.title}
+                    </h3>
+                  </div>
+
+                  {/* Circle */}
                   <div
                     className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300
-                    ${isActive
+                      ${isActive
                         ? 'bg-primary border-4 border-primary shadow-lg scale-110'
                         : 'bg-white border-4 border-gray-300 shadow-md scale-100'
                       }`}
@@ -157,29 +173,15 @@ const ScrollTimeline = () => {
                   </div>
                 </div>
 
-                {/* Title Section */}
-                <div
-                  className={`col-span-12 md:col-span-5 ${isRight ? 'md:col-start-1' : 'md:col-start-8'
-                    } flex items-center justify-center h-full`}
-                >
-                  <div
-                    className={`text-center w-full transition-all duration-300
-                    ${isActive
-                        ? 'opacity-100 translate-y-0'
-                        : 'opacity-0 translate-y-16 pointer-events-none'
-                      }`}
-                  >
-                    <h3 className={`text-2xl font-bold text-primary hidden md:block`}>{post.title}</h3>
-                  </div>
-                </div>
                 {/* Content */}
                 <div
-                  className={`col-span-12 md:col-span-5 ${isRight ? 'md:col-start-8' : 'md:col-start-1'
-                    } md:ml-0 md:mr-20`} // Mobile margin, reset on desktop
+                  className={`col-span-12 md:col-span-5 ${
+                    isRight ? 'md:col-start-8' : 'md:col-start-1'
+                  } md:ml-0 ${isRight ? 'md:mr-20' : 'md:ml-20'}`}
                 >
                   <div
-                    className={`ml-16 relative transition-all duration-300
-    ${isActive
+                    className={`ml-16 md:ml-0 relative transition-all duration-300
+                      ${isActive
                         ? 'opacity-100 translate-y-0'
                         : 'opacity-0 translate-y-16 pointer-events-none'
                       }`}
@@ -188,7 +190,7 @@ const ScrollTimeline = () => {
                       <div className="w-full max-w-md bg-white rounded-xl shadow-lg">
                         <img
                           className="w-full h-36 rounded-t-md object-cover"
-                          src="https://plus.unsplash.com/premium_photo-1670984935550-5ce2e220977a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                          src="https://images.unsplash.com/photo-1730724742886-b0e36d1eb067?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                           alt={post.title}
                         />
                         <div className="px-6 py-8">
@@ -199,7 +201,6 @@ const ScrollTimeline = () => {
                     </div>
                   </div>
                 </div>
-
               </div>
             );
           })}
