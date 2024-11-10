@@ -69,6 +69,7 @@ const ScrollTimeline = () => {
       excerpt:
         "Tareeg Alhareer International Trade Company was founded by Mr. Omer Imam Hassan Mohamed, a graduate of Shanghai Tongji University with over 22 years of experience in international trade.",
       side: 'right',
+      image: 'https://plus.unsplash.com/premium_photo-1661932036915-4fd90bec6e8a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
     },
     {
       id: 2,
@@ -76,6 +77,7 @@ const ScrollTimeline = () => {
       excerpt:
         "The journey of Tareeg Alhareer began with a vision: to elevate Sudan's agricultural treasures and promote their availability in global markets. With a passion for sustainable practices, we tap into local knowledge and expertise, working closely with farmers to enhance our offerings.",
       side: 'left',
+      image: 'https://images.unsplash.com/photo-1617952740732-26b1904d6853?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
     },
     {
       id: 3,
@@ -83,6 +85,7 @@ const ScrollTimeline = () => {
       excerpt:
         'Our mission is to provide innovative and world-class solutions tailored to Sudan\'s agribusiness and export sectors. We aim to enhance productivity by equipping local farmers with advanced technologies and best practices, fostering economic development across Sudan.',
       side: 'right',
+      image: 'https://images.unsplash.com/photo-1642084399774-7bae8ede2477?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
     },
     {
       id: 4,
@@ -90,6 +93,7 @@ const ScrollTimeline = () => {
       excerpt:
         "We aspire to be the leading authority in Sudan's agribusiness sector, dedicated to empowering local farmers and enhancing the agricultural value chain. Our vision encompasses continuous improvement and innovation, ensuring we remain at the forefront of the industry.",
       side: 'left',
+      image: 'https://images.unsplash.com/photo-1700716465891-9e5e9f501d7d?q=80&w=1793&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
     },
   ];
 
@@ -189,8 +193,8 @@ const ScrollTimeline = () => {
                     <div className="flex flex-col items-center mt-4 md:mt-0 md:mx-0">
                       <div className="w-full max-w-md bg-white rounded-xl shadow-lg">
                         <img
-                          className="w-full h-36 rounded-t-md object-cover"
-                          src="https://images.unsplash.com/photo-1730724742886-b0e36d1eb067?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                          className="w-full h-44 md:h-60 rounded-t-md object-cover"
+                          src={post.image}
                           alt={post.title}
                         />
                         <div className="px-6 py-8">

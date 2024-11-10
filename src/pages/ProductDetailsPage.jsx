@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import NotFound from "../components/NotFound";
 import Loading from "../components/Loading";
-
+import ContactUs from '../components/ContactUs';
 
 
 const ProductDetailsPage = () => {
@@ -43,25 +43,26 @@ const ProductDetailsPage = () => {
     <section className="bg-white mt-20">
       <div className="container px-6 py-10 mx-auto text-start">
         <Link to={`/products/`} className="flex justify-center text-white bg-primary hover:bg-primary/90 w-14 py-4 px-2 rounded-lg">
-        <svg className="mx-1 w-6 h-6" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18"></path>
-            </svg>
+          <svg className="mx-1 w-6 h-6" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18"></path>
+          </svg>
         </Link>
-        <div className="mt-8 lg:-mx-6 lg:flex lg:items-center">
-          {/* Replace with dynamic image URL */}
+        <div className="mt-8 lg:-mx-6 flex flex-col lg:items-center">
+          <h1 className="relative text-4xl md:text-5xl text-primary font-bold">{product.name}</h1>
+
+          <p className="md:mx-32 mt-6 text-sm text-gray-500 md:text-lg">
+            {product.description}
+          </p>
+
           <img
-            className="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96"
+            className="mt-6 w-full lg:mx-6 lg:w-1/2 rounded-md h-72 lg:h-96"
             src={product.image}
             alt="product image"
           />
-          <div className="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 text-start">
-            <p className="text-2xl text-primary capitalize">{product.name}</p>
-            <p className="mt-3 text-sm text-gray-500 md:text-sm">
-              {product.description}
-            </p>
-          </div>
         </div>
       </div>
+
+      <ContactUs />
     </section>
   );
 };
