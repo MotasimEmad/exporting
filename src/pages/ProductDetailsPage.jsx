@@ -11,29 +11,6 @@ const ProductDetailsPage = () => {
   const { isLoading, product, error } = useSelector((state) => state.productDetails);
   const dispatch = useDispatch();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  
-  useEffect(() => {
-    let autoplayTimer;
-    
-    if (product?.images?.length > 1) {
-      autoplayTimer = setInterval(() => {
-        if (!isAnimating) {
-          setIsAnimating(true);
-          setCurrentImageIndex((prevIndex) => 
-            prevIndex === product.images.length - 1 ? 0 : prevIndex + 1
-          );
-          setTimeout(() => setIsAnimating(false), 500);
-        }
-      }, 2000);
-    }
-
-    return () => {
-      if (autoplayTimer) {
-        clearInterval(autoplayTimer);
-      }
-    };
-  }, [product?.images?.length, isAnimating]);
 
   useEffect(() => {
     dispatch(getProductById(id));
@@ -45,22 +22,18 @@ const ProductDetailsPage = () => {
   }, [dispatch, id]);
 
   const nextImage = () => {
-    if (product?.images && !isAnimating) {
-      setIsAnimating(true);
+    if (product?.images) {
       setCurrentImageIndex((prevIndex) => 
         prevIndex === product.images.length - 1 ? 0 : prevIndex + 1
       );
-      setTimeout(() => setIsAnimating(false), 500);
     }
   };
 
   const prevImage = () => {
-    if (product?.images && !isAnimating) {
-      setIsAnimating(true);
+    if (product?.images) {
       setCurrentImageIndex((prevIndex) => 
         prevIndex === 0 ? product.images.length - 1 : prevIndex - 1
       );
-      setTimeout(() => setIsAnimating(false), 500);
     }
   };
 
@@ -78,19 +51,20 @@ const ProductDetailsPage = () => {
 
   return (
     <section className="bg-white mt-20">
-      {/* Full-width Image Slider */}
-      <div className="relative w-full h-[70vh] md:h-screen bg-gray-900">
-        {/* Back Navigation Link */}
+      <div className="container px-6 py-10 mx-auto text-start">
         <Link 
           to="/products/" 
-          className="absolute top-4 left-4 z-10 flex justify-center text-white bg-black/50 hover:bg-black/70 w-14 py-4 px-2 rounded-lg transition-colors"
+          className="flex justify-center text-white bg-primary hover:bg-primary/90 w-14 py-4 px-2 rounded-lg"
         >
           <svg 
             className="mx-1 w-6 h-6" 
+            data-slot="icon" 
             fill="none" 
             strokeWidth="1.5" 
             stroke="currentColor" 
             viewBox="0 0 24 24" 
+            xmlns="http://www.w3.org/2000/svg" 
+            aria-hidden="true"
           >
             <path 
               strokeLinecap="round" 
@@ -99,99 +73,83 @@ const ProductDetailsPage = () => {
             />
           </svg>
         </Link>
+        <div className="mt-8 lg:-mx-6 flex flex-col lg:items-center">
+          <h1 className="relative text-4xl md:text-5xl text-primary font-bold">
+            {product.name}
+          </h1>
 
-        {product.images && product.images.length > 0 && (
-          <>
-            <div className="absolute inset-0 w-full h-full">
-              <img
-                className="w-full h-full object-cover transition-opacity duration-500"
-                src={product.images[currentImageIndex]}
-                alt={`Product image ${currentImageIndex + 1}`}
-              />
-              {/* Dark Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/40"></div>
-            </div>
-            
-            {product.images.length > 1 && (
+          <p className="md:mx-32 mt-6 text-sm text-gray-500 md:text-lg">
+            {product.description}
+          </p>
+
+          <div className="relative mt-6 w-full lg:mx-6 lg:w-1/2">
+            {product.images && product.images.length > 0 && (
               <>
-                {/* Navigation Buttons */}
-                <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-between px-4 md:px-8">
-                  <button
-                    onClick={prevImage}
-                    className="bg-black/50 text-white p-3 md:p-4 rounded-full hover:bg-black/70 transition-all duration-300 transform hover:scale-110 focus:outline-none group"
-                    aria-label="Previous image"
-                    disabled={isAnimating}
-                  >
-                    <svg 
-                      className="w-6 h-6 md:w-8 md:h-8 group-hover:-translate-x-1 transition-transform" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24"
-                    >
-                      <path 
-                        strokeLinecap="round" 
-                        strokeLinejoin="round" 
-                        strokeWidth="2" 
-                        d="M15 19l-7-7 7-7"
-                      />
-                    </svg>
-                  </button>
-                  <button
-                    onClick={nextImage}
-                    className="bg-black/50 text-white p-3 md:p-4 rounded-full hover:bg-black/70 transition-all duration-300 transform hover:scale-110 focus:outline-none group"
-                    aria-label="Next image"
-                    disabled={isAnimating}
-                  >
-                    <svg 
-                      className="w-6 h-6 md:w-8 md:h-8 group-hover:translate-x-1 transition-transform" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24"
-                    >
-                      <path 
-                        strokeLinecap="round" 
-                        strokeLinejoin="round" 
-                        strokeWidth="2" 
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </button>
-                </div>
-
-                {/* Thumbnails */}
-                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-4 px-4 py-2 bg-black/40 rounded-full backdrop-blur-sm">
-                  {product.images.map((img, index) => (
+                <img
+                  className="w-full rounded-md h-72 lg:h-96 object-cover"
+                  src={product.images[currentImageIndex]}
+                  alt={`Product image ${currentImageIndex + 1}`}
+                />
+                
+                {product.images.length > 1 && (
+                  <>
                     <button
-                      key={index}
-                      onClick={() => setCurrentImageIndex(index)}
-                      disabled={isAnimating}
-                      className={`w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition-all duration-300 transform hover:scale-125 ${
-                        currentImageIndex === index 
-                          ? 'bg-white scale-125' 
-                          : 'bg-white/50 hover:bg-white/75'
-                      }`}
-                      aria-label={`Go to image ${index + 1}`}
-                    />
-                  ))}
-                </div>
+                      onClick={prevImage}
+                      className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70"
+                      aria-label="Previous image"
+                    >
+                      <svg 
+                        className="w-6 h-6" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path 
+                          strokeLinecap="round" 
+                          strokeLinejoin="round" 
+                          strokeWidth="2" 
+                          d="M15 19l-7-7 7-7"
+                        />
+                      </svg>
+                    </button>
+                    <button
+                      onClick={nextImage}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70"
+                      aria-label="Next image"
+                    >
+                      <svg 
+                        className="w-6 h-6" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path 
+                          strokeLinecap="round" 
+                          strokeLinejoin="round" 
+                          strokeWidth="2" 
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </button>
+
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                      {product.images.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setCurrentImageIndex(index)}
+                          className={`w-2 h-2 rounded-full ${
+                            currentImageIndex === index 
+                              ? 'bg-white' 
+                              : 'bg-white/50'
+                          }`}
+                          aria-label={`Go to image ${index + 1}`}
+                        />
+                      ))}
+                    </div>
+                  </>
+                )}
               </>
             )}
-          </>
-        )}
-      </div>
-
-       {/* Product Header */}
-       <div className="container px-6 mx-auto">
-        <div className="mt-8 mb-12 flex flex-col md:flex-row md:items-start md:gap-8">
-          <div className="md:w-1/3 mb-6 md:mb-0">
-            <h1 className="text-3xl md:text-5xl text-primary font-bold">
-              {product.name}
-            </h1>
-          </div>
-          <div className="md:w-2/3">
-            <p className="text-sm text-gray-500 md:text-lg text-start">
-              {product.description}
-            </p>
           </div>
         </div>
       </div>
