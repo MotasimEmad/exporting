@@ -11,24 +11,33 @@ const ProductDetailsPage = () => {
   const { isLoading, product, error } = useSelector((state) => state.productDetails);
   const dispatch = useDispatch();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const intervalRef = useRef(null);
 
+  // Effect for fetching product data - runs only when id changes
   useEffect(() => {
     dispatch(getProductById(id));
-    const scrollToTop = () => window.scrollTo(0, 0);
-    scrollToTop();
-
-    // Start auto-play on mount
-    startAutoPlay();
+    window.scrollTo(0, 0);
 
     return () => {
       window.scrollTo(0, 0);
+    };
+  }, [dispatch, id]); // Removed product?.images from dependencies
+
+  // Separate effect for handling autoplay - runs when product changes
+  useEffect(() => {
+    if (product?.images?.length > 0) {
+      startAutoPlay();
+    }
+
+    return () => {
       stopAutoPlay();
     };
-  }, [dispatch, id]);
+  }, [product]); // This effect handles starting/stopping autoplay when product data changes
 
   const startAutoPlay = () => {
+    if (!product?.images?.length) return;
+
+    stopAutoPlay(); // Clear any existing interval first
     intervalRef.current = setInterval(() => {
       setCurrentImageIndex((prevIndex) =>
         prevIndex === product.images.length - 1 ? 0 : prevIndex + 1
@@ -37,11 +46,15 @@ const ProductDetailsPage = () => {
   };
 
   const stopAutoPlay = () => {
-    clearInterval(intervalRef.current);
-    intervalRef.current = null;
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
   };
 
   const nextImage = () => {
+    if (!product?.images?.length) return;
+
     stopAutoPlay();
     setCurrentImageIndex((prevIndex) =>
       prevIndex === product.images.length - 1 ? 0 : prevIndex + 1
@@ -50,6 +63,8 @@ const ProductDetailsPage = () => {
   };
 
   const prevImage = () => {
+    if (!product?.images?.length) return;
+
     stopAutoPlay();
     setCurrentImageIndex((prevIndex) =>
       prevIndex === 0 ? product.images.length - 1 : prevIndex - 1
@@ -58,6 +73,8 @@ const ProductDetailsPage = () => {
   };
 
   const handleDotClick = (index) => {
+    if (!product?.images?.length) return;
+
     stopAutoPlay();
     setCurrentImageIndex(index);
     startAutoPlay();
@@ -74,6 +91,8 @@ const ProductDetailsPage = () => {
   if (!product || Object.keys(product).length === 0) {
     return <NotFound />;
   }
+
+  const hasMultipleImages = product.images?.length > 1;
 
   return (
     <section className="bg-white mt-20">
@@ -109,19 +128,19 @@ const ProductDetailsPage = () => {
           </p>
 
           <div className="relative mt-6 w-full lg:mx-6 lg:w-1/2">
-            {product.images && product.images.length > 0 && (
+            {product.images?.length > 0 && (
               <>
                 <img
                   className="w-full rounded-md h-72 lg:h-96 object-cover"
                   src={product.images[currentImageIndex]}
-                  alt={`Product image ${currentImageIndex + 1}`}
+                  alt={`${product.name} - Image ${currentImageIndex + 1}`}
                 />
 
-                {product.images.length > 1 && (
+                {hasMultipleImages && (
                   <>
                     <button
                       onClick={prevImage}
-                      className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70"
+                      className="absolute left-2 top-1/2 -translate-y-1/2 bg-primary/50 text-white p-2 rounded-full hover:bg-primary/70"
                       aria-label="Previous image"
                     >
                       <svg
@@ -140,7 +159,7 @@ const ProductDetailsPage = () => {
                     </button>
                     <button
                       onClick={nextImage}
-                      className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 bg-primary/50 text-white p-2 rounded-full hover:bg-primary/70"
                       aria-label="Next image"
                     >
                       <svg
@@ -164,22 +183,24 @@ const ProductDetailsPage = () => {
           </div>
 
           {/* Add dots for image navigation */}
-          <div className="mt-4 p-4 bg-gray-200 rounded-md">
-            <div className="flex gap-2 justify-center">
-              {product.images.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleDotClick(index)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    currentImageIndex === index
-                      ? 'bg-primary'
-                      : 'bg-gray-400 hover:bg-gray-500'
-                  }`}
-                  aria-label={`Go to image ${index + 1}`}
-                />
-              ))}
+          {hasMultipleImages && (
+            <div className="mt-4 p-4 rounded-md">
+              <div className="flex gap-2 justify-center">
+                {product.images.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleDotClick(index)}
+                    className={`w-3 h-3 rounded-full transition-colors ${
+                      currentImageIndex === index
+                        ? 'bg-primary'
+                        : 'bg-gray-400 hover:bg-gray-500'
+                    }`}
+                    aria-label={`Go to image ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
 
