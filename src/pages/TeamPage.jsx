@@ -34,7 +34,7 @@ const TeamPage = () => {
             </div>
 
             <div class="md:w-1/2 mb-6 md:mb-0">
-                <img src={team} />
+                <img src={team} class="rounded-lg shadow-lg w-full" />
             </div>
         </div>
     </main>
