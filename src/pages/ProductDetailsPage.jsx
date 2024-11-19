@@ -131,7 +131,7 @@ const ProductDetailsPage = () => {
             {product.images?.length > 0 && (
               <>
                 <img
-                  className="w-full rounded-md h-72 lg:h-96 object-cover"
+                  className="w-full rounded-md"
                   src={product.images[currentImageIndex]}
                   alt={`${product.name} - Image ${currentImageIndex + 1}`}
                 />
