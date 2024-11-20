@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import team from '../assets/team.jpeg';
+import team from '../assets/team.jpg';
+import team1 from '../assets/team1.png';
 
 const TeamPage = () => {
     useEffect(() => {
@@ -11,7 +12,7 @@ const TeamPage = () => {
     <main class="container mx-auto px-6 py-10 mt-12">
         <div class="flex flex-col md:flex-row items-center justify-between text-start">
             <div class="md:w-1/2 mb-6 md:mb-0">
-                <img src="https://plus.unsplash.com/premium_photo-1689977927774-401b12d137d6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Team Image" class="rounded-lg shadow-lg w-full" />
+                <img src={team1} alt="Team Image" class="rounded-lg w-full" />
             </div>
             <div class="md:w-1/2 md:pl-8 mt-2 md:mt-8">
                 <p class="text-gray-600 mb-6 font-thin">
@@ -34,7 +35,8 @@ const TeamPage = () => {
             </div>
 
             <div class="md:w-1/2 mb-6 md:mb-0">
-                <img src={team} class="rounded-lg shadow-lg w-full" />
+            <img class="h-80 w-80 sm:w-[28rem] sm:h-[28rem] flex-shrink-0 object-cover rounded-full md:ml-12" src={team} alt="" />
+                {/* <img src={team} class="rounded-lg shadow-lg w-full" /> */}
             </div>
         </div>
     </main>

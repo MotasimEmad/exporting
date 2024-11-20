@@ -17,7 +17,7 @@ const Hero = () => {
 
                                 <TypeAnimation
                                     sequence={[
-                                        'Together We Achieving More Synergy',
+                                        'Together, Achieving Greater Synergy',
                                         500,
                                     ]}
                                     wrapper="span"

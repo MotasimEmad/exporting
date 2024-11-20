@@ -1,4 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
+import OurMission from '../assets/our_mission.png';
+import OurVision from '../assets/our_vision.png';
+
+import AboutIcon from '../assets/about.png';
+import StoryIcon from '../assets/story.png';
+import MissionIcon from '../assets/mission.png';
+import VisionIcon from '../assets/vision.png';
+
 
 const ScrollTimeline = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -67,33 +75,37 @@ const ScrollTimeline = () => {
       id: 1,
       title: 'About Us',
       excerpt:
-        "Tareeg Alhareer International Trade Company was founded by Mr. Omer Imam Hassan Mohamed, a graduate of Shanghai Tongji University with over 22 years of experience in international trade.",
+        "Tareeg Alhareer International Trade Company was founded by Mr. Omer Imam Hassan Mohamed, a graduate of Shanghai Tongji University with over 22 years of experience in international trade. Our company was established to connect the vast potential of Sudan’s agricultural sector with global markets. We actively participate in local and international fairs, showcasing the richness of Sudan’s agricultural products while building valuable relationships with customers and partners worldwide. Our commitment to sustainability and quality ensures that every product contributes positively to our communities and empowers local farmers.",
       side: 'right',
-      image: 'https://plus.unsplash.com/premium_photo-1661932036915-4fd90bec6e8a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+      image: 'https://images.unsplash.com/photo-1642084399774-7bae8ede2477?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      icon: AboutIcon
     },
     {
       id: 2,
       title: 'Our Story',
       excerpt:
-        "The journey of Tareeg Alhareer began with a vision: to elevate Sudan's agricultural treasures and promote their availability in global markets. With a passion for sustainable practices, we tap into local knowledge and expertise, working closely with farmers to enhance our offerings.",
+        "The journey of Tareeg Alhareer began with a vision: to elevate Sudan's agricultural treasures and promote their availability in global markets. With a passion for sustainable practices, we tap into local knowledge and expertise, working closely with farmers to enhance our offerings. Through collaboration and open communication, we have transformed our operations into a platform that uplifts local communities while fostering enduring partnerships that empower farmers and elevate Sudan's agricultural industry.",
       side: 'left',
-      image: 'https://images.unsplash.com/photo-1617952740732-26b1904d6853?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+      image: 'https://images.unsplash.com/photo-1617952740732-26b1904d6853?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      icon: StoryIcon
     },
     {
       id: 3,
       title: 'Our Mission',
       excerpt:
-        'Our mission is to provide innovative and world-class solutions tailored to Sudan\'s agribusiness and export sectors. We aim to enhance productivity by equipping local farmers with advanced technologies and best practices, fostering economic development across Sudan.',
+        'Our mission is to provide innovative and world-class solutions tailored to Sudan\'s agribusiness and export sectors. We aim to enhance productivity by equipping local farmers with advanced technologies and best practices, fostering economic development across Sudan. By ensuring that every product meets the highest international standards, we are dedicated to quality and excellence in all our offerings.',
       side: 'right',
-      image: 'https://images.unsplash.com/photo-1642084399774-7bae8ede2477?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+      image: OurMission,
+      icon: MissionIcon
     },
     {
       id: 4,
       title: 'Our Vision',
       excerpt:
-        "We aspire to be the leading authority in Sudan's agribusiness sector, dedicated to empowering local farmers and enhancing the agricultural value chain. Our vision encompasses continuous improvement and innovation, ensuring we remain at the forefront of the industry.",
+        "We aspire to be the leading authority in Sudan's agribusiness sector, dedicated to empowering local farmers and enhancing the agricultural value chain. Our vision encompasses continuous improvement and innovation, ensuring we remain at the forefront of the industry. By fostering strong relationships with stakeholders, we aim to create lasting value and contribute to sustainable economic growth in Sudan.",
       side: 'left',
-      image: 'https://images.unsplash.com/photo-1700716465891-9e5e9f501d7d?q=80&w=1793&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+      image: OurVision,
+      icon: VisionIcon
     },
   ];
 
@@ -132,13 +144,12 @@ const ScrollTimeline = () => {
               >
                 {/* Timeline Circle with Title */}
                 <div className="absolute ml-6 md:ml-0 md:left-1/2 transform -translate-x-1/2 z-10 flex items-center"
-                     ref={(el) => (circlesRef.current[index] = el)}
-                     style={{ top: '50%' }}>
+                  ref={(el) => (circlesRef.current[index] = el)}
+                  style={{ top: '50%' }}>
                   {/* Title on the left/right of circle */}
                   <div
-                    className={`hidden md:block absolute ${
-                      isRight ? 'right-80' : 'left-80'
-                    } transform -translate-y-1/2 whitespace-nowrap`}
+                    className={`hidden md:block absolute ${isRight ? 'right-80' : 'left-80'
+                      } transform -translate-y-1/2 whitespace-nowrap`}
                   >
                     <h3
                       className={`text-2xl font-bold text-primary transition-all duration-300
@@ -159,29 +170,20 @@ const ScrollTimeline = () => {
                         : 'bg-white border-4 border-gray-300 shadow-md scale-100'
                       }`}
                   >
-                    {isActive && (
-                      <svg
+                    {isActive && post.icon && (
+                      <img
+                        src={post.icon}
+                        alt={`${post.title} icon`}
                         className="h-5 w-5 text-white animate-fadeIn"
-                        fill="none"
-                        strokeWidth="1.5"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
-                        />
-                      </svg>
+                      />
                     )}
                   </div>
                 </div>
 
                 {/* Content */}
                 <div
-                  className={`col-span-12 md:col-span-5 ${
-                    isRight ? 'md:col-start-8' : 'md:col-start-1'
-                  } md:ml-0 ${isRight ? 'md:mr-20' : 'md:ml-20'}`}
+                  className={`col-span-12 md:col-span-5 ${isRight ? 'md:col-start-8' : 'md:col-start-1'
+                    } md:ml-0 ${isRight ? 'md:mr-20' : 'md:ml-20'}`}
                 >
                   <div
                     className={`ml-16 md:ml-0 relative transition-all duration-300
@@ -193,7 +195,7 @@ const ScrollTimeline = () => {
                     <div className="flex flex-col items-center mt-4 md:mt-0 md:mx-0">
                       <div className="w-full max-w-md bg-white rounded-xl shadow-lg">
                         <img
-                          className="w-full h-44 md:h-60 rounded-t-md object-cover"
+                          className="w-full h-44 md:h-60 rounded-t-md "
                           src={post.image}
                           alt={post.title}
                         />
