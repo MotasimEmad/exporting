@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import OurMission from '../assets/our_mission.png';
 import OurVision from '../assets/our_vision.png';
+import OurStory from '../assets/our_story.jpeg';
 
 import AboutIcon from '../assets/about.png';
 import StoryIcon from '../assets/story.png';
@@ -86,7 +87,7 @@ const ScrollTimeline = () => {
       excerpt:
         "The journey of Tareeg Alhareer began with a vision: to elevate Sudan's agricultural treasures and promote their availability in global markets. With a passion for sustainable practices, we tap into local knowledge and expertise, working closely with farmers to enhance our offerings. Through collaboration and open communication, we have transformed our operations into a platform that uplifts local communities while fostering enduring partnerships that empower farmers and elevate Sudan's agricultural industry.",
       side: 'left',
-      image: 'https://images.unsplash.com/photo-1617952740732-26b1904d6853?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      image: OurStory,
       icon: StoryIcon
     },
     {
@@ -224,7 +225,7 @@ const ScrollTimeline = () => {
         >
           {scrollProgress >= 100 && (
             <svg
-              className="h-5 w-5 text-white animate-fadeIn"
+              className="h-5 w-5 text-black animate-fadeIn"
               fill="none"
               strokeWidth="1.5"
               stroke="currentColor"
